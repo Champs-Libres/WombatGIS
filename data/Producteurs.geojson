@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Nom": "BioFarm", "Nom produc": "Patrick et Vanessa Feller", "Adresse": "Cens 12a\n- 6970 Tenneville", "Produits": "Viandes de porc\nSattelschwein, agneau entre Sambre et Meuse, boeuf Angus", "Horaires": "jeudi et vendredi de 15h à 18h et le  samedi de 10h à 18h", "Contact": "0479\/342105 (fr) ou 0486\/253336 (nl)", "Site Web": "http:\/\/www.biofarm.be", "Photos": null }, "geometry": { "type": "Point", "coordinates": [ 5.57686693062096, 50.106038721422351 ] } },
+{ "type": "Feature", "properties": { "Nom": "Ferme Mossoux", "Nom produc": "Jean-Pol Mossoux", "Adresse": "Brisy, 23 -\n6673 Gouvy", "Produits": "Buf, porc et veau bio", "Horaires": null, "Contact": "080\/51.73.01", "Site Web": null, "Photos": null }, "geometry": { "type": "Point", "coordinates": [ 5.852603341098789, 50.158831551193948 ] } }
+]
+}

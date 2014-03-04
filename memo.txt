@@ -1,0 +1,3 @@
+les shapefiles sont en latin1 -> qd changement, choisir latin1
+
+qd création du geosjon avoir le format WGS 84 (et non 900913) + encoder en utf-8
