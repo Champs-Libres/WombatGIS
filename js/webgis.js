@@ -3,24 +3,23 @@
 /* global L, $, Mustache */
 "use strict";
 
-var webgis_layers_config = [];
-var webgis_layers = [];
+var webgis_layers;
 
 function display_layer(map,id) {
    if (webgis_layers[id].displayed) {
       map.removeLayer(webgis_layers[id].layer);
    }
    else {
-      add_geojson_layer(map, webgis_layers_config[id]);
+      add_geojson_layer(map, webgis_layers[id]);
    }
    webgis_layers[id].displayed = ! webgis_layers[id].displayed;
 }
 
 function add_geojson_layer(map, layer_config) {
-   $.get(layer_config.geojson_path, function(geojson_string) {
+   $.get(layer_config.geojson, function(geojson_string) {
       var geojson = JSON.parse(geojson_string);
-      if ("template_path" in layer_config) {
-         $.get(layer_config.template_path, function(template_content) {
+      if ("template" in layer_config) {
+         $.get(layer_config.template, function(template_content) {
             var onEachFeature = function (feature, layer) {
                var popupContent =  Mustache.render(template_content, feature.properties);
                layer.bindPopup(popupContent);
@@ -56,21 +55,19 @@ $(document).ready(function() {
 
       new L.Control.Zoom({ position: "topright" }).addTo(map);
 
-      for (i = 0, max_i = config.layers.length;  i < max_i; i = i +1) {
-         config.layers[i].displayed = true;
-         webgis_layers_config[config.layers[i].id] = config.layers[i];
-         webgis_layers[config.layers[i].id] = {};
-      }
+      webgis_layers = config.layers;
 
-      for (i = 0, max_i = webgis_layers_config.length;  i < max_i; i = i +1) {
+      for (i = 0, max_i = webgis_layers.length;  i < max_i; i = i +1) {
+         webgis_layers[i].displayed = true;
+         webgis_layers[i].id = i;
+
          (function(i) {
-            var tmp_i = i;
-            add_geojson_layer(map, webgis_layers_config[i]);
-            $("#map_menu").append("<h2 id='title_layer_" + i + "'>" + webgis_layers_config[i].title + "</h2>");
+            add_geojson_layer(map, config.layers[i]);
+            $("#map_menu").append("<h2 id='title_layer_" + i + "'>" + config.layers[i].title + "</h2>");
             $("#title_layer_" + i).click( function() {
-               display_layer(map,tmp_i);
+               display_layer(map,i);
             });
-         })(i);
-      }
+         }) (i);
+      }      
    });
 });

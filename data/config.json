@@ -1,29 +1,22 @@
 {
-   "map_center_lon": 50.1087,
-   "map_center_lat": 5.6873,
-   "layers": [
-      {
-         "id": 0,
-         "title": "Parc Naturel des Deux-Ourthes",
-         "geojson_path": "data/Contour_PNDO.geojson"
-         },
-      {
-         "id": 2,
-         "title": "Marchés Fermiers",
-         "geojson_path": "data/Marches_fermiers.geojson",
-         "template_path": "data/Marches_fermiers.html"
-         },
-      {
-         "id": 1,
-         "title": "Marchés Traditionnels",
-         "geojson_path": "data/Marches_traditionnels.geojson",
-         "template_path": "data/Marches_traditionnels.html"
-         },
-      {
-         "id": 3,
-         "title": "Producteurs",
-         "geojson_path": "data/Producteurs.geojson",
-         "template_path": "data/Producteurs.html"
-         }
+   "map_center_lon":"50.1088",
+   "map_center_lat":"5.6873",
+   "layers":[
+   {
+      "title":"Parc Naturel des Deux-Ourthes",
+      "geojson":"data\/Contour_PNDO.geojson"},
+   {
+      "title":"Marchés Fermiers",
+      "geojson":"data\/Marches_fermiers.geojson",
+      "template":"data\/Marches_fermiers.html"},
+   { 
+      "title":"Marchés Traditionnels",
+      "geojson":"data\/Marches_traditionnels.geojson",
+      "template":"data\/Marches_traditionnels.html"},
+   {
+      "title":"Producteurs",
+      "geojson":"data\/Producteurs.geojson",
+      "template":"data\/Producteurs.html"
+   }
    ]
 }
