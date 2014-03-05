@@ -1,0 +1,21 @@
+.message {
+   font-weight: 900;
+   margin: 20px;
+   padding: 5px;
+   text-align: center;
+   color: #FFFFFF;
+   background-color: #707070;
+}
+
+.success {
+   background-color: #88AA00;
+}
+
+.error {
+   background-color: #FF0000;
+}
+
+a {
+   font-weight: 900;
+   color: #88AA00;
+}
