@@ -10,14 +10,20 @@
    <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
    <script src="js/lib/shramov-leaflet-plugins/layer/tile/Google.js"></script>
    <script src="js/lib/mustache/mustache.js"></script>
+   <link rel="stylesheet" href="css/main.css" />
    
 
    <script src="js/webgis.js"></script>
 </head>
 <body>
-   <div id="map_menu" style="height:500px;width:300px;background-color:gray;color:white;float:left">
-         <h1 style="text-align:center;text-decoration:underline">Menu</h1>
+   <div id="map_menu">
+      <div class="logo_positionner">
+         <div class="logo">
+            <img src="img/logo.gif" />
+         </div>
+      </div>
+      <div id="champs-libres_ref"><a href="http://www.champs-libres.coop" target="_blank">Réalisé par Champs Libres</a></div>
    </div>
-   <div id="map" style="height:500px;width:800px"></div>
+   <div id="map"></div>
 </body>
 </html>

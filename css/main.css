@@ -1,0 +1,66 @@
+body {
+   padding: 0;
+   margin: 0;
+}
+html, body, #map {
+   width:100%
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box;     
+   box-sizing: border-box; 
+   height: 100%;
+}
+
+#map_menu {
+   position: relative;
+   overflow-y: scroll;
+   float: left;
+   background-color: #707070;
+   color: #FFFFFF;
+   height: 100%;
+   width: 300px;
+   z-index: 2090;
+   -webkit-box-shadow: 0px 0px 0px 7px rgba(34, 183, 223, 0.5);
+   -moz-box-shadow: 0px 0px 0px 7px rgba(34, 183, 223, 0.5);
+   box-shadow: 0px 0px 0px 7px rgba(34, 183, 223, 0.5);
+   font-size: 1.1em
+}
+
+#map_menu .logo_positionner {
+   text-align: center;
+   margin-top: 0.5em;
+   margin-bottom: 1em;
+}
+
+#map_menu .logo img {
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px; /* future proofing */
+-khtml-border-radius: 10px
+}
+
+#map_menu .layer_title {
+   margin: 1.5em;
+   margin-top: 0.5em;
+   margin-bottom: 0.5em;
+}
+
+#map_menu .layer_title img {
+   height: 1.1em;
+   margin-right: 0.5em;
+}
+
+#champs-libres_ref {
+   text-align: center;
+   position: absolute;
+   bottom: 0;
+   width: 300px;
+}
+
+#champs-libres_ref a {
+   color: rgba(34, 183, 223, 0.5);
+   text-decoration: none;
+}
+
+.leaflet-left .leaflet-control {
+    margin-left: 30px;
+}

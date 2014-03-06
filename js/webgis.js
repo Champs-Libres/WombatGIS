@@ -4,6 +4,7 @@
 "use strict";
 
 var webgis_layers;
+var map, osm_layer, base_layer, google_layer;
 
 function display_layer(map,id) {
    if (webgis_layers[id].displayed) {
@@ -35,7 +36,7 @@ function add_geojson_layer(map, layer_config) {
 
 $(document).ready(function() {
    $.get("data/config.json", function(config) {
-      var map, osm_layer, base_layer, google_layer, i, max_i;
+      var i, max_i;
 
       map = new L.map("map", {
          zoomControl: false,
@@ -43,7 +44,8 @@ $(document).ready(function() {
 
       google_layer =  new L.Google('SATELLITE');
 
-      osm_layer = new L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      //http://c.tile.openstreetmap.fr/hot/15/16891/11086.png
+      osm_layer = new L.tileLayer("http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
          attribution: "Map data &copy; <a href='http://openstreetmap.org'>OpenStreetMap</a> contributors, <a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>",
          maxZoom: 18,
       });
@@ -63,7 +65,7 @@ $(document).ready(function() {
 
          (function(i) {
             add_geojson_layer(map, config.layers[i]);
-            $("#map_menu").append("<h2 id='title_layer_" + i + "'>" + config.layers[i].title + "</h2>");
+            $("#map_menu").append("<div class=\"layer_title\" id='title_layer_" + i + "'><img src=\"js/lib/leaflet-0.7.2/images/marker-icon.png\"></im>" + config.layers[i].title + "</div>");
             $("#title_layer_" + i).click( function() {
                display_layer(map,i);
             });
