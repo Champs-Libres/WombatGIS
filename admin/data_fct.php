@@ -42,13 +42,17 @@ function json_array_save($json_array) {
  * @param float $lon The new longitude
  * @param float $lat The new latitude
  */
-function json_array_edit_general($json_array, $lon, $lat) {
+function json_array_edit_general($json_array, $lon, $lat, $zoom) {
    if($lon != "") {
       $json_array["map_center_lon"] = $lon;
    }
 
    if($lon != "") {
       $json_array["map_center_lat"] = $lat;
+   }
+
+   if($zoom != "") {
+      $json_array["map_zoom_level"] = $zoom;
    }
    return $json_array;
 }
@@ -115,20 +119,33 @@ function json_array_edit_layer_position($json_array, $layer_id, $new_layer_id) {
    return $json_array;
 }
 
-/**
- * Saves an (post) uploaded file to the data directory and returns the path (used by
- * the javascipt part) to access to the file.
- *
- * The form used to upload the file may has the file input called "webgis_file"
- *  
- * @return string The path (used by the javascipt part) to access to the file.
- */
+
 function upload() {
    if (is_uploaded_file($_FILES['webgis_file']['tmp_name'])){
       $file_name = $_FILES['webgis_file']['name'];
       $destination = "../data/" . $_FILES['webgis_file']['name'];
       if (move_uploaded_file($_FILES['webgis_file']['tmp_name'], $destination)) {
          return "data/" . $file_name;
+      }
+   }
+   echo "<div class=\"message error\">Problème durant l'upload</div>";
+   die();
+}
+
+/**
+ * Saves an (post) uploaded file to a certain directory and returns the name of
+ * the file
+ *
+ * @param string $input_name The name used for the file input of the form
+ * @param string $destination The directory where to add the file (without / at the end).
+ * @return string The file name
+ */
+function updload($input_name, $destination) {
+   if (is_uploaded_file($_FILES[$input_name]['tmp_name'])){
+      $file_name = $_FILES[$input_name]['name'];
+      $dotdot_destination = $destination . "/" . $file_name;
+      if (move_uploaded_file($_FILES[$input_name]['tmp_name'], $dotdot_destination)) {
+         return $file_name;
       }
    }
    echo "<div class=\"message error\">Problème durant l'upload</div>";
@@ -143,7 +160,7 @@ function upload() {
  * @param string $field The field that will contain the path to the file uploaded
  */
 function upload_file_and_json_array_update($json_array,$layer_id,$field) {
-   $new_file = upload();
+   $new_file = 'data/' . updload('webgis_file', '../data');
    return json_array_edit_layer_field($json_array, $layer_id, $field, $new_file);
 }
 ?>

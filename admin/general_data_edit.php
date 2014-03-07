@@ -14,7 +14,7 @@ display_header("Mise à jour des données générales");
 
 <?php
 if(isset($_POST["lon"])) {
-   $json_array = json_array_edit_general($json_array, $_POST["lon"], $_POST["lat"]);
+   $json_array = json_array_edit_general($json_array, $_POST["lon"], $_POST["lat"], $_POST["zoom"]);
    json_array_save($json_array);
    echo "<div class=\"message success\">Les données ont été mises à jour.</div>";
 }
@@ -23,6 +23,7 @@ if(isset($_POST["lon"])) {
 <form action="" method="post">
 Longitude : <input type="input" name="lon" value="<?php echo $json_array["map_center_lon"];  ?>"><br>
 Latitude : <input type="input" name="lat" value="<?php echo $json_array["map_center_lat"];  ?>"><br>
+Niveau de zoom : <input type="input" name="zoom" value="<?php echo $json_array["map_zoom_level"];  ?>"><br>
 <input type="submit" value="Editer">
 </form>
 

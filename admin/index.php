@@ -7,7 +7,6 @@
  */
 
 require('data_fct.php');
-$json_array = json_array_get();
 require('display_fct.php');
 $json_array = json_array_get();
 display_header("Administration",false);
@@ -19,6 +18,7 @@ display_header("Administration",false);
    <b>Centre de la carte:</b><br />
    Longitude : <?php echo $json_array["map_center_lon"]; ?><br />
    Latitude : <?php echo $json_array["map_center_lat"]; ?><br />
+   Niveau de zoom : <?php echo $json_array["map_zoom_level"]; ?><br />
 </p>
 
 <p>

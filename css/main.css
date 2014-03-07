@@ -12,7 +12,7 @@ html, body, #map {
 
 #map_menu {
    position: relative;
-   overflow-y: scroll;
+   overflow-y: auto;
    float: left;
    background-color: #707070;
    color: #FFFFFF;
@@ -49,6 +49,14 @@ border-radius: 10px; /* future proofing */
    margin-right: 0.5em;
 }
 
+
+#map_menu div.layer_title div.img {
+   width:30px;
+   height: 1.1em;
+   float:left;
+   text-align:center
+}
+
 #champs-libres_ref {
    text-align: center;
    position: absolute;
@@ -63,4 +71,23 @@ border-radius: 10px; /* future proofing */
 
 .leaflet-left .leaflet-control {
     margin-left: 30px;
+}
+
+#img_loader_container {
+   position: absolute;
+}
+
+.img_loader {
+   position: absolute;
+   width: 300px;
+}
+
+.colored_round {
+   height:1em;
+   width:1em;
+   margin:auto;
+   -moz-border-radius: 5px;
+   -webkit-border-radius: 5px;
+   border-radius: 5px; /* future proofing */
+   -khtml-border-radius: 5px
 }
