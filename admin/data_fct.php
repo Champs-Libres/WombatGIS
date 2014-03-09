@@ -147,8 +147,12 @@ function updload($input_name, $destination) {
       if (move_uploaded_file($_FILES[$input_name]['tmp_name'], $dotdot_destination)) {
          return $file_name;
       }
+      else {
+         echo "<div class=\"message error\">Problème durant l'upload (1)</div>";
+   die();
+      }
    }
-   echo "<div class=\"message error\">Problème durant l'upload</div>";
+   echo "<div class=\"message error\">Problème durant l'upload (2)</div>";
    die();
 }
 
