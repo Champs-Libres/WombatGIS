@@ -29,8 +29,13 @@ function json_array_get() {
  */
 function json_array_save($json_array) {
    $json_file = fopen("../data/config.json", "w");
-   fwrite($json_file, json_encode($json_array,JSON_UNESCAPED_UNICODE));
+   $file_saved = fwrite($json_file, json_encode($json_array,JSON_UNESCAPED_UNICODE));
    fclose($json_file);
+   if(! $file_saved)
+   {
+      echo "<div class=\"message error\">Problème durant la sauvegarde du fichier</div>";
+      die();
+   }
 }
 
 /**
