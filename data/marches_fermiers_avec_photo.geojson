@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Nom": "Marchés du terroir des deux Ourthes", "Adresse": "Tenneville", "Produits": "Produits locaux et artisanat", "Horaire": "17 et 31 juillet de 17h  20h", "Contact": null, "photo_url": "http:\/\/pndo.be\/images\/made\/images\/general\/sn-herou-01_180_135_c1.jpg", "lien_photo": "http:\/\/pndo.be\/fr\/decouvrir-territoire\/les-sites-naturels\/le-herou" }, "geometry": { "type": "Point", "coordinates": [ 5.52473177916041, 50.091984799117313 ] } },
+{ "type": "Feature", "properties": { "Nom": "Marchés du terroir des deux Ourthes", "Adresse": "Bertogne", "Produits": "Produits locaux et artisanat", "Horaire": "Le 10 juillet et le 7 aot de 17h  20h", "Contact": null, "photo_url": "http:\/\/pndo.be\/images\/made\/images\/general\/prod_loc_3_180_135_c1.JPG" }, "geometry": { "type": "Point", "coordinates": [ 5.664873872886827, 50.080554511711469 ] } },
+{ "type": "Feature", "properties": { "Nom": "Marchés du terroir des deux Ourthes", "Adresse": "Amberloup", "Produits": "Produits locaux et artisanat, fromages, légumes, cannabis, haschisch, héroïne médicinale", "Horaire": "Le 4 juillet, le 25 juillet, le 15 aot et le 22 aot de 17h  20h", "Contact": null, "photo_url": "http:\/\/pndo.be\/images\/made\/images\/general\/Produits_locaux_900_170_c1.JPG", "lien_photo": "http:\/\/pndo.be\/images\/made\/images\/general\/Produits_locaux_900_170_c1.JPG" }, "geometry": { "type": "Point", "coordinates": [ 5.528453830270391, 50.031195499253457 ] } },
+{ "type": "Feature", "properties": { "Nom": "Marchés fermier - terroir pour tous", "Adresse": "Amberloup", "Produits": "Produits locaux : fromages, salaisons, légumes, etc.", "Horaire": "Tous les premiers vendredi du mois de 17h  20h (sauf janvier, juillet et aot)", "Contact": null, "photo_url": null, "lien_photo": null }, "geometry": { "type": "Point", "coordinates": [ 5.531169729987027, 50.032560195120446 ] } }
+]
+}

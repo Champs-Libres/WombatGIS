@@ -91,3 +91,62 @@ border-radius: 10px; /* future proofing */
    border-radius: 5px; /* future proofing */
    -khtml-border-radius: 5px
 }
+
+
+/** layout popup ***/
+
+
+.leaflet-popup-content-wrapper,.leaflet-popup-content {
+   -webkit-border-radius: 0 !important;
+   -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+ }
+ 
+ .leaflet-popup-content-wrapper {
+     padding-left: 0 !important;
+     padding-right: 0 !important;
+     padding-top: 0 !important;
+ }
+ 
+ .leaflet-popup-content {
+     margin: 0 !important;
+     margin-right: -1px !important;
+ }
+ 
+ div.webgis_pop_up_content {
+     max-width: 180px;
+ }
+ 
+ div.webgis_pop_up_content div.pop_up_top {
+     background-color: rgb(61,58,53);
+     color: white;
+     padding-top: 30px; /* to show the cross to close the pop-up */
+ }
+ 
+ div.webgis_pop_up_content p.head {
+     margin-left: 4px;
+     margin-top: 5px; 
+ }
+ 
+ div.webgis_pop_up_content a.photo {
+     border: 0 solid #707070;
+ }
+ 
+ div.webgis_pop_up_content img.main {
+     max-width: 180px;
+ }
+ 
+ div.webgis_pop_up_sub_content{
+     padding-left: 10px;
+     padding-right: 10px;
+ }
+ 
+ div.webgis_pop_up_sub_content dt {
+     font-weight: bold;
+     margin-top: 6px;
+     color: rgb(61,58,53);
+ }
+ 
+ div.webgis_pop_up_sub_content dd {
+     margin-left: 6px;
+ }
