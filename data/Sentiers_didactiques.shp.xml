@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!--<!DOCTYPE metadata SYSTEM "http://www.esri.com/metadata/esriprof80.dtd">-->
+<metadata xml:lang="fr"><Esri><MetaID>{1FFD1D43-9420-44F0-8F62-C741F2E67286}</MetaID><CreaDate>20110429</CreaDate><CreaTime>13182900</CreaTime><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process Name="CreateFeatureclass_1" ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\CreateFeatureclass" Date="20110429" Time="131829">CreateFeatureclass "C:\Documents and Settings\user\Bureau\FPNW\Cartographie\PNDO" Sentiers_didactiques POLYLINE # DISABLED DISABLED # # 0 0 0 "C:\Documents and Settings\user\Bureau\FPNW\Cartographie\PNDO\Sentiers_didactiques.shp"</Process></lineage></DataProperties></Esri></metadata>

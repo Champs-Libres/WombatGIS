@@ -1,7 +1,9 @@
 body {
    padding: 0;
    margin: 0;
+   font-family: "Helvetica Neue", "Helvetica", helvetica, arial, sans-serif; color: #747067; font-size: 14px; 
 }
+
 html, body, #map {
    width:100%
    -moz-box-sizing: border-box; 
@@ -14,14 +16,14 @@ html, body, #map {
    position: relative;
    overflow-y: auto;
    float: left;
-   background-color: #707070;
+   background-color: #747067;
    color: #FFFFFF;
    height: 100%;
    width: 300px;
    z-index: 2090;
-   -webkit-box-shadow: 0px 0px 0px 7px rgba(34, 183, 223, 0.5);
-   -moz-box-shadow: 0px 0px 0px 7px rgba(34, 183, 223, 0.5);
-   box-shadow: 0px 0px 0px 7px rgba(34, 183, 223, 0.5);
+   -webkit-box-shadow: 0px 0px 0px 7px rgba(166, 202, 30, 0.5);
+   -moz-box-shadow: 0px 0px 0px 7px rgba(166, 202, 30, 0.5);
+   box-shadow: 0px 0px 0px 7px rgba(166, 202, 30, 0.5);
    font-size: 1.1em
 }
 
@@ -42,6 +44,10 @@ border-radius: 10px; /* future proofing */
    margin: 1.5em;
    margin-top: 0.5em;
    margin-bottom: 0.5em;
+}
+
+#map_menu .layer_title :hover {
+   text-decoration: underline;
 }
 
 #map_menu .layer_title img {
@@ -65,12 +71,17 @@ border-radius: 10px; /* future proofing */
 }
 
 #champs-libres_ref a {
-   color: rgba(34, 183, 223, 0.5);
+   color: rgba(166, 202, 30, 0.5);
    text-decoration: none;
 }
 
+/* Leaflet customize */
 .leaflet-left .leaflet-control {
-    margin-left: 30px;
+   margin-left: 30px;
+}
+
+.leaflet-popup-content {
+   width: 250px;
 }
 
 #img_loader_container {
