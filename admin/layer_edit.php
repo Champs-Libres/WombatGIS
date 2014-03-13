@@ -10,7 +10,7 @@ require('data_fct.php');
 require('display_fct.php');
 $json_array = json_array_get();
 $layer_id = $_GET["id"];
-display_header("Mise à jour d'un layer");
+display_header("Mise à jour d'une couche");
 
 if(isset($_POST["form_id"])) {
    if($_POST["form_id"] == "title") {
