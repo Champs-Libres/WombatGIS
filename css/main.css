@@ -12,6 +12,11 @@ html, body, #map {
    height: 100%;
 }
 
+.logo {
+  background-color: #FFFFFF;
+  margin-top: 0;
+}
+
 #map_menu {
    position: relative;
    overflow-y: auto;
@@ -29,7 +34,7 @@ html, body, #map {
 
 #map_menu .logo_positionner {
    text-align: center;
-   margin-top: 0.5em;
+   /* margin-top: 0.5em; deleted to collapse with head */
    margin-bottom: 1em;
 }
 
@@ -37,7 +42,8 @@ html, body, #map {
 -moz-border-radius: 10px;
 -webkit-border-radius: 10px;
 border-radius: 10px; /* future proofing */
--khtml-border-radius: 10px
+-khtml-border-radius: 10px;
+margin-bottom: 1em;
 }
 
 #map_menu .layer_title {
@@ -47,7 +53,8 @@ border-radius: 10px; /* future proofing */
 }
 
 #map_menu .layer_title :hover {
-   text-decoration: underline;
+   /* text-decoration: underline;*/
+   color: #9ABC46;
 }
 
 #map_menu .layer_title img {
@@ -122,6 +129,7 @@ border-radius: 10px; /* future proofing */
  .leaflet-popup-content {
      margin: 0 !important;
      margin-right: -1px !important;
+     max-width: 180px !important;
  }
  
  div.webgis_pop_up_content {
