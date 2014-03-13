@@ -133,7 +133,7 @@ function json_array_pop_element($json_array, $element_id) {
  */
 function json_array_add_element($json_array) {
    $elements = $json_array["elements"];
-   array_push($elements, []);
+   array_push($elements, json_decode("{}"));
    $json_array["elements"] = $elements;
    return $json_array;
 }
