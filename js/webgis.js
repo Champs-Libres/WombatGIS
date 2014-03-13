@@ -5,34 +5,34 @@
 
 var webgis = function() {
    var map; //the map
-   var layers_config_array; //contient all the informations about the layers
+   var elements; //contient all the informations about the layers (+ title configuration)
 
-   function alternateDisplayLayer(layer_id) {
+   function alternateDisplayLayer(element_id) {
      /**
       * AlternateDisplay a given layer :
       * if the layer is displayed, this function will undisplay the layer and vice-versa)
       *
-      * @param {int} layer_id The id of the layer (regarding to the order in config.json file)
+      * @param {int} element_id The id of the element (regarding to the order in config.json file)
       */
-      if (layers_config_array[layer_id].displayed) {
-         map.removeLayer(layers_config_array[layer_id].layer);
+      if (elements[element_id].displayed) {
+         map.removeLayer(elements[element_id].layer);
       }
       else {
-         addGeojsonLayer(layer_id);
+         addGeojsonLayer(element_id);
       }
-      layers_config_array[layer_id].displayed = ! layers_config_array[layer_id].displayed;
+      elements[element_id].displayed = ! elements[element_id].displayed;
    }
 
-   function addGeojsonLayerWithTC(layer_id, template_content) {
+   function addGeojsonLayerWithTC(element_id, template_content) {
      /**
       * Add a geolayer on the map knowing the template content
       *
-      * @param {int} layer_id The id of the layer (regarding to the order in config.json file)
+      * @param {int} element_id The id of the layer (regarding to the order in config.json file)
       * @param {string} template_content The template content (mustache.js). This variable is null
       * if there is no layer
       */
       var leaflet_config = {};
-      var layer_config = layers_config_array[layer_id];
+      var element = elements[element_id];
 
       if(template_content) {
          leaflet_config.onEachFeature = function (feature, layer) {
@@ -51,20 +51,20 @@ var webgis = function() {
          };
       }
 
-      if('style' in layer_config) {
-         leaflet_config.style = layer_config.style;
+      if('style' in element) {
+         leaflet_config.style = element.style;
       }
 
       
-      if ('icon' in layer_config) {
+      if ('icon' in element) {
          var executeWhenImgIsLoaded = function() {
             var icon;
-            var img = $('#img_'  + layer_id);
+            var img = $('#img_'  + element_id);
             var img_height = img.height();
             var img_width = img.width();
             var img_center = Math.floor(img.width() / 2) + 1;
             icon = L.icon({
-               iconUrl: 'img/marker/' + layer_config.icon,
+               iconUrl: 'img/marker/' + element.icon,
                iconSize: [img_width, img_height], // size of the icon
                iconAnchor: [img_center, img_height], // point of the icon which will correspond to marker's location 
                popupAnchor: [0, 10 - img_height]
@@ -74,44 +74,44 @@ var webgis = function() {
                return L.marker(latlng, {icon: icon});
             };
 
-            $.get(layer_config.geojson, function(geojson_string) {
+            $.get(element.geojson, function(geojson_string) {
                var geojson = JSON.parse(geojson_string);
-               layers_config_array[layer_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
+               elements[element_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
             });
          };
          
-         if($('#img_'  + layer_id).length > 0) { //image deja charge
+         if($('#img_'  + element_id).length > 0) { //image deja charge
             executeWhenImgIsLoaded();
          }
          else {
-            $('#img_loader_container').append('<img id="img_' + layer_id + '" src="img/marker/' + layer_config.icon + '"></img>');
-            $('#img_'+ layer_id).load(executeWhenImgIsLoaded);
+            $('#img_loader_container').append('<img id="img_' + element_id + '" src="img/marker/' + element.icon + '"></img>');
+            $('#img_'+ element_id).load(executeWhenImgIsLoaded);
          }
       }
 
       else {
-         $.get(layer_config.geojson, function(geojson_string) {
+         $.get(element.geojson, function(geojson_string) {
             var geojson = JSON.parse(geojson_string);
-            layers_config_array[layer_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
+            elements[element_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
          });
       }
 
    }
 
-   function addGeojsonLayer(layer_id) {
+   function addGeojsonLayer(element_id) {
      /**
       * Add a geojson layer on a map
       *
       * @param {json} the id of the layer (cf order in the config.json file)
       */
 
-      var layer_config = layers_config_array[layer_id];
-      if ('template' in layer_config) { //pop-up qd clique
-         $.get(layer_config.template, function(template_content) {
-            addGeojsonLayerWithTC(layer_id, template_content);
+      var element = elements[element_id];
+      if ('template' in element) { //pop-up qd clique
+         $.get(element.template, function(template_content) {
+            addGeojsonLayerWithTC(element_id, template_content);
          });
       } else {
-         addGeojsonLayerWithTC(layer_id, null);
+         addGeojsonLayerWithTC(element_id, null);
       }
    }
 
@@ -144,22 +144,22 @@ var webgis = function() {
 
             new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
-            layers_config_array = config.layers_config;
+            elements = config.elements;
 
-            for (i = 0, max_i = layers_config_array.length;  i < max_i; i = i +1) {
-               layers_config_array[i].displayed = true;
+            for (i = 0, max_i = elements.length;  i < max_i; i = i +1) {
+               elements[i].displayed = true;
 
-               if(layers_config_array[i].geojson) {
+               if(elements[i].geojson) {
                   addGeojsonLayer(i);
-                  if(layers_config_array[i].menuTitle) { //couche geojson
-                     if('icon' in layers_config_array[i]) {
-                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="img"><img id="title_layer_' + i + '_img" src="img/marker/' + layers_config_array[i].icon + '" style="margin:auto" /></div><div>' + layers_config_array[i].menuTitle + '</div></div>');
+                  if(elements[i].menuTitle) { //couche geojson
+                     if('icon' in elements[i]) {
+                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="img"><img id="title_layer_' + i + '_img" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menuTitle + '</div></div>');
                      }
-                     else if ('style' in layers_config_array[i])  {
-                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="img"><div id="title_layer_' + i + '_img" class="colored_round" style="background-color:' + layers_config_array[i].style.color + ';"></div></div><div>'+ layers_config_array[i].menuTitle + '</div></div>');
+                     else if ('style' in elements[i])  {
+                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="img"><div id="title_layer_' + i + '_img" class="colored_round" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menuTitle + '</div></div>');
                            /*   background-color: #DDDDDD; border: 3px solid #000000; opacity: 0.1; */
                      } else {
-                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="img"><div id="title_layer_' + i + '_img"></div></div><div>'+ layers_config_array[i].menuTitle + '</div></div>');
+                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="img"><div id="title_layer_' + i + '_img"></div></div><div>'+ elements[i].menuTitle + '</div></div>');
                      }
                      (function (i) {
                         $('#title_layer_' + i).click( function() {
@@ -168,7 +168,7 @@ var webgis = function() {
                      }) (i);
                   }
                } else { // title
-                  $('#map_menu').append('<div class="layer_title">'+ layers_config_array[i].menuTitle + '</div>');
+                  $('#map_menu').append('<div class="layer_title">'+ elements[i].menuTitle + '</div>');
                }
             }
          });

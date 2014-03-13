@@ -51,10 +51,10 @@ function display_footer($display_index_link=true) {
 /**
  *
  */
-function display_td_layer_field($json_array, $layer_id, $field_name, $no_field_message) {
+function display_td_element_field($json_array, $element_id, $field_name, $no_field_message) {
    echo "<td>";
-   if (array_key_exists($field_name, $json_array["layers_config"][$layer_id]) && $json_array["layers_config"][$layer_id][$field_name] != "") {
-      echo $json_array["layers_config"][$layer_id][$field_name];
+   if (array_key_exists($field_name, $json_array["elements"][$element_id]) && $json_array["elements"][$element_id][$field_name] != "") {
+      echo $json_array["elements"][$element_id][$field_name];
    }
    else {
       echo $no_field_message;

@@ -2,7 +2,7 @@
    "map_center_lon":"50.1088",
    "map_center_lat":"5.6873",
    "map_zoom_level":"10",
-   "layers_config":[
+   "elements":[
       {
          "geojson":"data\/Contour_PNDO.geojson",
          "style": {
