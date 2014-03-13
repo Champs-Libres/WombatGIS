@@ -1,3 +1,8 @@
 les shapefiles sont en latin1 -> qd changement, choisir latin1
 
 qd création du geosjon avoir le format WGS 84 (et non 900913) + encoder en utf-8
+
+
+Renommer :
+layers_config en layer_configs_tab ou en layer_configs ?
+layer_id      en row_id            ou en config_id ? 
