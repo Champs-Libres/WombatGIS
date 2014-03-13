@@ -9,61 +9,64 @@
 require('data_fct.php');
 require('display_fct.php');
 $json_array = json_array_get();
-$layer_id = $_GET["id"];
-display_header("Mise à jour d'une couche");
+$element_id = $_GET["id"];
+display_header("Mise à jour d'un élement");
 
 if(isset($_POST["form_id"])) {
-   if($_POST["form_id"] == "title") {
-      $json_array = json_array_edit_layer_field($json_array, $layer_id, "title", $_POST["title"]);
-      $message = "Title mis à jour";
+   if($_POST["form_id"] == "menuTitle") {
+      $json_array = json_array_edit_element_field($json_array, $element_id, "menuTitle", $_POST["menuTitle"]);
+      $message = "Titre mis à jour";
    } elseif($_POST["form_id"] == "icon") {
       if($_POST["icon"] == "") {
-         $json_array = json_array_delete_layer_field($json_array, $layer_id, "icon");
+         $json_array = json_array_delete_element_field($json_array, $element_id, "icon");
          $message = "Icône supprimée";
       }
       else {
-         $json_array = json_array_edit_layer_field($json_array, $layer_id, "icon", $_POST["icon"]);
+         $json_array = json_array_edit_element_field($json_array, $element_id, "icon", $_POST["icon"]);
          $message = "Icône mise à jour";
       }
-   } elseif($_POST["form_id"] == "color") {
-      $json_array = json_array_edit_layer_field($json_array, $layer_id, "color", $_POST["color"]);
-      $message = "Couleur mise à jour";
+   } elseif($_POST["form_id"] == "style") {
+      $new_style = json_decode($_POST["style"],true);
+      $json_array = json_array_edit_element_field($json_array, $element_id, "style", $new_style);
+      $message = "Style mise à jour";
    } elseif($_POST["form_id"] == "icon_upload") {
       $icon_name = updload("icon_file", "../img/marker");
-      $json_array = json_array_edit_layer_field($json_array, $layer_id, "icon", $icon_name);
+      $json_array = json_array_edit_element_field($json_array, $element_id, "icon", $icon_name);
       $message = "Icône downloadée et ajoutée";
    } elseif ($_POST["form_id"] == "tempate_delete") {
-      $json_array = json_array_delete_layer_field($json_array, $layer_id, "template");
+      $json_array = json_array_delete_element_field($json_array, $element_id, "template");
       $message = "Template supprimé";
    } elseif ($_POST["form_id"] == "tempate_update") {
-      $json_array = upload_file_and_json_array_update($json_array,$layer_id,"template");
+      $json_array = upload_file_and_json_array_update($json_array,$element_id,"template");
       $message = "Template mis à jour";
    } elseif ($_POST["form_id"] == "geojson_update") {
-      $json_array = upload_file_and_json_array_update($json_array,$layer_id,"geojson");
+      $json_array = upload_file_and_json_array_update($json_array,$element_id,"geojson");
       $message = "GeoJSON mis à jour";
    }
    json_array_save($json_array);
    echo "<div class=\"message success\">" . $message . "</div>";
 }
    
-$layer = $json_array["layers"][$layer_id];
+$element = $json_array["elements"][$element_id];
 ?>
 <h2>Edition du titre</h2> 
 
 <p>
-   Titre actuel: <?php echo $layer["title"];  ?>
+   Titre actuel:  
+   <?php display_element_field($json_array, $element_id, "menuTitle", "pas de titre (l'élément n'est pas affiché dans le menu)"); ?>
 </p>
 
 <form method="post">
-   <input type="hidden" name="form_id" value="title">
-   <input type="input" name="title" value="<?php echo $layer["title"];  ?>">
+   <input type="hidden" name="form_id" value="menuTitle">
+   <input type="input" name="menuTitle" value="<?php echo json_array_get_element_field($json_array,$element_id,"menuTitle","");  ?>">
    <input type="submit" value="Modifier">
 </form>
 
 <h2>Edition du GeoJSON</h2> 
 
 <p>
-   GeoJSON actucel: <?php echo $layer["geojson"]; ?>
+   GeoJSON actucel:
+   <?php display_element_field($json_array, $element_id, "geojson", "pas de geojson"); ?>
 </p>
 
    <form enctype="multipart/form-data" method="post">
@@ -76,11 +79,7 @@ $layer = $json_array["layers"][$layer_id];
 
 <p>
    Icône actuelle :
-   <?php if(array_key_exists("icon", $layer)) {
-      echo $layer["icon"]; 
-   } else {
-      echo "pas d'icone";
-   } ?>
+   <?php display_element_field($json_array, $element_id, "icon", "pas d'icône"); ?>
 </p>
 
 <p>
@@ -93,7 +92,7 @@ $layer = $json_array["layers"][$layer_id];
          $files = scandir($dir);
          foreach ($files as $file) {
             if ($file != '..' and $file != '.') {
-               if($layer["icon"] == $file) {
+               if($element["icon"] == $file) {
                   echo "<option value=\"" . $file . "\" selected>" . $file . "</option>";
                }
                else {
@@ -113,30 +112,32 @@ $layer = $json_array["layers"][$layer_id];
    <input type="submit" value="Ajouter cette icône">
 </form>
 
-<h2>Choix de la couleur de fond (pour les polygones)</h2>
+<h2>Choix du style (pour les polygones et lignes)</h2>
 
 <p>
-   Couleur actuelle:
-   <?php if(array_key_exists("color", $layer) and $layer["color"] != "") {
-      echo $layer["color"]; 
+   Style actuel:
+   <?php if(array_key_exists("style", $element)) {
+      echo style_to_string($json_array,$element_id);
    } else {
-      echo "pas de couleur choisie";
+      echo "pas de style choisi";
    } ?>
 </p>
 
 <form method="post">
-   <input type="hidden" name="form_id" value="color">
-   <input type="input" name="color" value="<?php if(array_key_exists("color", $layer)) { echo $layer["color"]; }  ?>">
+   <input type="hidden" name="form_id" value="style">
+   <input type="input" name="style" value='<?php if(array_key_exists("style", $element)) {
+      echo style_to_string($json_array,$element_id);
+   } ?>'>
    <input type="submit" value="Modifier">
 </form>
 
 <h2>Edition du template</h2> 
 <?php 
-if(array_key_exists("template", $layer)) {
+if(array_key_exists("template", $element)) {
    ?>
 
    <form method="post" style="margin-bottom:10px">
-      Template actuel: <?php echo $layer["template"]; ?>
+      Template actuel: <?php echo $element["template"]; ?>
    
       <input type="hidden" name="form_id" value="tempate_delete">
       <input type="submit" value="Supprimer le template">

@@ -51,14 +51,16 @@ function display_footer($display_index_link=true) {
 /**
  *
  */
+function display_element_field($json_array, $element_id, $field_name, $no_field_message) {
+   echo json_array_get_element_field($json_array, $element_id, $field_name, $no_field_message);
+}
+
+/**
+ *
+ */
 function display_td_element_field($json_array, $element_id, $field_name, $no_field_message) {
    echo "<td>";
-   if (array_key_exists($field_name, $json_array["elements"][$element_id]) && $json_array["elements"][$element_id][$field_name] != "") {
-      echo $json_array["elements"][$element_id][$field_name];
-   }
-   else {
-      echo $no_field_message;
-   }
+   display_element_field($json_array, $element_id, $field_name, $no_field_message);
    echo "</td>" . PHP_EOL;
 }
 ?>

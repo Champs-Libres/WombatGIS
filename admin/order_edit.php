@@ -12,7 +12,7 @@ $json_array = json_array_get();
 display_header("Mise de l'ordre d'affichage des couches");
 
 if(isset($_POST["layer_id"])) {
-   $json_array = json_array_edit_layer_position($json_array, $_POST["layer_id"], $_POST["new_id"]);
+   $json_array = json_array_edit_elements_position($json_array, $_POST["layer_id"], $_POST["new_id"]);
    json_array_save($json_array);
    echo "<div class=\"message success\">L'odre a été mis à jour.</div>";
 }

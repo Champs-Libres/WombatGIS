@@ -36,11 +36,16 @@ for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
    display_td_element_field($json_array, $i, "geojson", "[titre du menu (pas de geojson)]");
    display_td_element_field($json_array, $i, "template", "[pas de template]");
    echo "<td><a href=\"element_edit.php?id={$i}\">Modifier l'élément</a></td>" . PHP_EOL;
+   echo "<td><a href=\"element_delete.php?id={$i}\">Supprimer l'élément</a></td>" . PHP_EOL;
    echo "</tr>" . PHP_EOL;
 }
 ?>
 </table>
 </center>
+
+<p>
+   <a href="element_add.php">Ajouter un élément</a>
+</p>
 
 <p>
    <a href="order_edit.php">Changer l'ordre d'affichage</a>
