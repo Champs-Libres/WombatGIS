@@ -168,7 +168,7 @@ var webgis = function() {
                      }) (i);
                   }
                } else { // title
-                  $('#map_menu').append('<div class="layer_title">'+ layers_config_array[i].menuTitle + '</div>');
+                  $('#map_menu').append('<div class="layer_title layer_head">'+ layers_config_array[i].menuTitle + '</div>');
                }
             }
          });
