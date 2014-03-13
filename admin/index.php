@@ -29,19 +29,12 @@ display_header("Administration",false);
 <center>
 <table width="100%">
 <?php
-for($i = 0, $size = count($json_array["layers"]); $i < $size; ++$i) {
+for($i = 0, $size = count($json_array["layers_config"]); $i < $size; ++$i) {
    echo "<tr>" . PHP_EOL;
    echo "<td>" . $i . "</td>" . PHP_EOL; 
-   echo "<td>" . $json_array["layers"][$i]["title"] . "</td>" . PHP_EOL;
-   echo "<td>" . $json_array["layers"][$i]["geojson"] . "</td>"  . PHP_EOL;
-   echo "<td>";
-   if (array_key_exists('template', $json_array["layers"][$i]) && $json_array["layers"][$i]["template"] != "") {
-      echo $json_array["layers"][$i]["template"];
-   }
-   else {
-      echo "pas de template";
-   }
-   echo "</td>" . PHP_EOL;
+   display_td_layer_field($json_array, $i, "menuTitle", "[ne se trouve pas dans le menu (pas de titre)]");
+   display_td_layer_field($json_array, $i, "geojson", "[titre du menu (pas de geojson)]");
+   display_td_layer_field($json_array, $i, "template", "[pas de template]");
    echo "<td><a href=\"layer_edit.php?id={$i}\">Modifier la couche</a></td>" . PHP_EOL;
    echo "</tr>" . PHP_EOL;
 }
