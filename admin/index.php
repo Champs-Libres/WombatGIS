@@ -35,7 +35,7 @@ for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
    display_td_element_field($json_array, $i, "menuTitle", "[ne se trouve pas dans le menu (pas de titre)]");
    display_td_element_field($json_array, $i, "geojson", "[titre du menu (pas de geojson)]");
    display_td_element_field($json_array, $i, "template", "[pas de template]");
-   echo "<td><a href=\"layer_edit.php?id={$i}\">Modifier l'élément</a></td>" . PHP_EOL;
+   echo "<td><a href=\"element_edit.php?id={$i}\">Modifier l'élément</a></td>" . PHP_EOL;
    echo "</tr>" . PHP_EOL;
 }
 ?>
