@@ -9,10 +9,10 @@
 require('data_fct.php');
 require('display_fct.php');
 $json_array = json_array_get();
-display_header("Mise de l'ordre d'affichage des couches");
+display_header("Mise de l'ordre d'affichage des éléments");
 
-if(isset($_POST["layer_id"])) {
-   $json_array = json_array_edit_elements_position($json_array, $_POST["layer_id"], $_POST["new_id"]);
+if(isset($_POST["element_id"])) {
+   $json_array = json_array_edit_elements_position($json_array, $_POST["element_id"], $_POST["new_id"]);
    json_array_save($json_array);
    echo "<div class=\"message success\">L'odre a été mis à jour.</div>";
 }
@@ -21,8 +21,8 @@ if(isset($_POST["layer_id"])) {
 <h2>Ordre actuel</h2>
 
 <?php    
-   for($i = 0, $size = count($json_array["layers"]); $i < $size; ++$i) {
-      echo $i . ". " . $json_array["layers"][$i]["title"] . "<br />" . PHP_EOL;
+   for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
+      echo $i . ". " . json_array_get_element_field($json_array, $i, "menuTitle", "[sans titre]"). "<br />" . PHP_EOL;
    }
 ?>
 
@@ -30,17 +30,17 @@ if(isset($_POST["layer_id"])) {
 
 <form action="" method="post">
    Mettre la couche 
-   <select name="layer_id">
+   <select name="element_id">
       <?php 
-      for($i = 0, $size = count($json_array["layers"]); $i < $size; ++$i) {
-         echo "<option value=\"". $i ."\">" . $json_array["layers"][$i]["title"]  . "</option>";
+      for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
+         echo "<option value=\"". $i ."\">" . $i . ". " . json_array_get_element_field($json_array, $i, "menuTitle", "[sans titre]") . "</option>";
       }
       ?>
    </select>
    à la position
    <select name="new_id">
       <?php 
-      for($i = 0, $size = count($json_array["layers"]); $i < $size; ++$i) {
+      for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
          echo "<option value=\"". $i ."\">" . $i  . "</option>";
       }
       ?>
