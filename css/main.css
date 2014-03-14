@@ -12,11 +12,6 @@ html, body, #map {
    height: 100%;
 }
 
-.logo {
- background-color: #FFFFFF;
- margin-top: 0;
-}
-
 #map_menu {
    position: relative;
    overflow-y: auto;
@@ -26,9 +21,11 @@ html, body, #map {
    height: 100%;
    width: 275px;
    z-index: 2090;
+   /*
    -webkit-box-shadow: 0px 0px 0px 7px rgba(166, 202, 30, 0.5);
    -moz-box-shadow: 0px 0px 0px 7px rgba(166, 202, 30, 0.5);
    box-shadow: 0px 0px 0px 7px rgba(166, 202, 30, 0.5);
+   */
    font-size: 1.1em
 }
 
@@ -38,12 +35,21 @@ html, body, #map {
    margin-bottom: 1em;
 }
 
+#map_menu .logo {
+ background-color: #FFFFFF;
+ margin-top: 0;
+ margin-bottom: 0;
+}
+
+
 #map_menu .logo img {
+   width: 250px;
+   /*
    -moz-border-radius: 10px;
    -webkit-border-radius: 10px;
-   border-radius: 10px; /* future proofing */
+   border-radius: 10px; /* future proofing * /
    -khtml-border-radius: 10px;
-   margin-bottom: 1em;
+   */
 }
 
 #map_menu .layer_title {
@@ -71,7 +77,7 @@ html, body, #map {
 }
 
 
-#map_menu div.layer_title div.img {
+#map_menu div.layer_title div.layer_icon {
    width:30px;
    height: 1.1em;
    float:left;
@@ -80,10 +86,13 @@ html, body, #map {
 
 #champs-libres_ref {
    font-size: 12px;
-   position: absolute;
-   bottom: 0;
-   padding-left: 0.5em;
-   padding-bottom: 0.5em;
+   position: fixed;
+   bottom: 0px;
+   padding-bottom: 10px;
+   padding-left: 10px;
+   width: 265px;
+   background-color: #3D3A35;
+   margin-top: 10px;
 }
 
 #champs-libres_ref a {
@@ -106,10 +115,13 @@ html, body, #map {
    width: 275px;
 }
 
-.colored_round {
-   height:1em;
+.colored_line {
+   position: relative;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 0.45em;
+   height:0.15em;
    width:1em;
-   margin:auto;
    -moz-border-radius: 5px;
    -webkit-border-radius: 5px;
    border-radius: 5px; /* future proofing */
@@ -119,6 +131,9 @@ html, body, #map {
 
 /** layout popup ***/
 
+.leaflet-popup {
+   width: 400px;
+}
 
 .leaflet-popup-content-wrapper,.leaflet-popup-content {
    -webkit-border-radius: 0 !important;
@@ -135,11 +150,11 @@ html, body, #map {
 .leaflet-popup-content {
    margin: 0 !important;
    margin-right: -1px !important;
-   max-width: 180px !important;
+   width: 400px !important;
 }
 
 div.webgis_pop_up_content {
-   max-width: 180px;
+   width: 400px;
 }
 
 div.webgis_pop_up_content div.pop_up_top {
@@ -159,7 +174,7 @@ div.webgis_pop_up_content a.photo {
 }
 
 div.webgis_pop_up_content img.main {
-   width: 180px;
+   width: 400px;
 }
 
 div.webgis_pop_up_sub_content{
