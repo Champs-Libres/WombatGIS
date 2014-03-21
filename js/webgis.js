@@ -25,16 +25,29 @@ var webgis = function() {
       elements[element_id].displayed = ! elements[element_id].displayed;
    }
 
-   function marker_mouseout_fct() {
+   function marker_mouseout_fct(e) {      
       var popup = this.layer._popup;
-      L.DomEvent.removeListener(this.layer, 'mouseout', marker_mouseout_fct);
-      L.DomEvent.addListener(popup._container, 'mouseout', popup_mouseout_fct, {'popup': popup, 'layer': this.layer});
+      var target = e.originalEvent.fromElement || e.originalEvent.relatedTarget;
+      //var target = e.toElement || e.relatedTarget;
+      if($(target).parent().hasClass('leaflet-popup') 
+         || $(target).parent().hasClass('leaflet-popup-tip-container') ) {
+         L.DomEvent.addListener(popup._container, 'mouseout', popup_mouseout_fct, {'popup': popup, 'layer': this.layer});
+         L.DomEvent.removeListener(this.layer, 'mouseout', marker_mouseout_fct);
+      }
+      else {
+         console.log($(target).parent().attr('class'));
+         this.layer.closePopup();
+         L.DomEvent.removeListener(this.layer, 'mouseout', marker_mouseout_fct);
+         console.log(close);
+      }
    }
 
    function popup_mouseout_fct (e) {
       var target = e.toElement || e.relatedTarget;
-      if($(target).parent().attr('class') === 'leaflet-overlay-pane')
+      console.log($(target).parent().attr('class'));
+      if($(target).parent().hasClass('leaflet-overlay-pane'))
       {
+         console.log("popup_mouseout_fct");
          L.DomEvent.removeListener(this.popup._container, 'mouseout', popup_mouseout_fct);
          this.layer.closePopup();
       }
