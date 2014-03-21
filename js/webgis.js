@@ -137,10 +137,21 @@ var webgis = function() {
                maxZoom: 18,
             });
 
+            var hillshade_layer = new L.tileLayer('./tiles/hillshade/{z}/{x}/{y}.png', {
+                minZoom: 8,
+                maxZoom: 14,
+                tms: true
+            });
+
             map.addLayer(google_layer);
             map.addLayer(osm_layer);
+            map.addLayer(hillshade_layer);
 
-            map.addControl(new L.Control.Layers({'Open Street Map':osm_layer, 'Google Satelite': google_layer},{},{ position: 'topleft' }));
+            map.addControl(
+                    new L.Control.Layers({
+                        'Open Street Map':osm_layer, 
+                        'Google Satelite': google_layer
+                    },{'Relief' : hillshade_layer },{ position: 'topleft' }));
 
             new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
