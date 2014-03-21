@@ -71,10 +71,13 @@ html, body, #map {
    margin-right: 0.5em;
 }
 
+.layer_title_selected {
+   font-weight: 700;
+}
+
 #map_menu .layer_head {
    font-size: larger;
    color: #A6CA1E;
-   font-weight: bold;
    margin-left: 0.5em; /* to overrride .layer_title margin */
    margin-top: 1em ; /* to override .layer_title margin-top */
 }

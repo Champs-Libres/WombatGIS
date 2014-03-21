@@ -16,9 +16,11 @@ var webgis = function() {
       */
       if (elements[element_id].displayed) {
          map.removeLayer(elements[element_id].layer);
+         $("#title_layer_" + element_id).removeClass("layer_title_selected");
       }
       else {
          addGeojsonLayer(element_id);
+         $("#title_layer_" + element_id).addClass("layer_title_selected");
       }
       elements[element_id].displayed = ! elements[element_id].displayed;
    }
@@ -180,13 +182,13 @@ var webgis = function() {
                   addGeojsonLayer(i);
                   if(elements[i].menuTitle) { //couche geojson
                      if('icon' in elements[i]) {
-                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="layer_icon"><img id="title_layer_' + i + '_icon" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menuTitle + '</div></div>');
+                        $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><img id="title_layer_' + i + '_icon" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menuTitle + '</div></div>');
                      }
                      else if ('style' in elements[i])  {
-                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_line" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menuTitle + '</div></div>');
+                        $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_line" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menuTitle + '</div></div>');
                            /*   background-color: #DDDDDD; border: 3px solid #000000; opacity: 0.1; */
                      } else {
-                        $('#map_menu').append('<div class="layer_title" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon"></div></div><div>'+ elements[i].menuTitle + '</div></div>');
+                        $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon"></div></div><div>'+ elements[i].menuTitle + '</div></div>');
                      }
                      (function (i) {
                         $('#title_layer_' + i).click( function() {
