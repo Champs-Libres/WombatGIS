@@ -17,7 +17,7 @@ html, body, #map {
    overflow-y: auto;
    float: left;
    background-color: #3D3A35;
-   color: #FFFFFF;
+   color: #E9EAE5;
    height: 100%;
    width: 275px;
    z-index: 2090;
@@ -36,14 +36,16 @@ html, body, #map {
 }
 
 #map_menu .logo {
- background-color: #FFFFFF;
+ background-color: #E9EAE5;
  margin-top: 0;
  margin-bottom: 0;
 }
 
 
 #map_menu .logo img {
-   width: 250px;
+   width: 125px;
+   padding-top: 30px;
+   padding-bottom: 30px;
    /*
    -moz-border-radius: 10px;
    -webkit-border-radius: 10px;
@@ -135,10 +137,15 @@ html, body, #map {
    width: 400px;
 }
 
-.leaflet-popup-content-wrapper,.leaflet-popup-content {
+.leaflet-popup-tip {
+   background: none repeat scroll 0 0 #E9EAE5;
+}
+
+.leaflet-popup-content-wrapper {
    -webkit-border-radius: 0 !important;
    -moz-border-radius: 0 !important;
    border-radius: 0 !important;
+   background-color: #E9EAE5;
 }
 
 .leaflet-popup-content-wrapper {
@@ -148,9 +155,13 @@ html, body, #map {
 }
 
 .leaflet-popup-content {
+   -webkit-border-radius: 0 !important;
+   -moz-border-radius: 0 !important;
+   border-radius: 0 !important;
    margin: 0 !important;
    margin-right: -1px !important;
    width: 400px !important;
+
 }
 
 div.webgis_pop_up_content {
@@ -159,8 +170,8 @@ div.webgis_pop_up_content {
 
 div.webgis_pop_up_content div.pop_up_top {
    background-color: rgb(61,58,53);
-   color: white;
-   padding-top: 30px; /* to show the cross to close the pop-up */
+   color: #E9EAE5;
+   padding-top: 25px; /* to show the cross to close the pop-up */
 }
 
 div.webgis_pop_up_content p.head {
