@@ -1,15 +1,7 @@
-<b>{{ Nom }}</b>
-
-<p><strong>Nom des producteurs&nbsp;:</strong> {{ Nom produc }}</p>
-
-<p><strong>Adresse&nbsp;:</strong> {{ Adresse }}</p>
+<p><strong>Nom des producteurs&nbsp;:</strong> {{ Nom }} ({{ Nom produc }})</p>
 
 <p><strong>Produits&nbsp;:</strong> {{ Produits }}</p>
 
-<p><strong>Horaires&nbsp;:</strong> {{ Horaires }}</p>
+<p><strong>Heures d’ouverture&nbsp;:</strong> {{ Horaires }}</p>
 
-<p><strong>Contact&nbsp;:</strong> {{ Contact }}</p>
-
-<p><strong>Site Web&nbsp;:</strong> <a href="{{ Site Web }}" target="blank">{{ Site Web }}</a></p>
-
-<p><strong>Photos&nbsp;:</strong> {{ Photos }}</p>
+<p><strong>Contact&nbsp;:</strong> {{ Adresse }} ({{ Contact }}{{#Site Web}} - <a href="{{ Site Web }}" target="_blank">{{ Site Web }}</a>{{/Site Web}})</p>
