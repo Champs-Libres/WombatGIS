@@ -23,6 +23,23 @@ var webgis = function() {
       elements[element_id].displayed = ! elements[element_id].displayed;
    }
 
+   function marker_mouseout_fct() {
+      var popup = this.layer._popup;
+      L.DomEvent.removeListener(this.layer, 'mouseout', marker_mouseout_fct);
+      L.DomEvent.addListener(popup._container, 'mouseout', popup_mouseout_fct, {'popup': popup, 'layer': this.layer});
+   }
+
+   function popup_mouseout_fct (e) {
+      var target = e.toElement || e.relatedTarget;
+      if($(target).parent().attr('class') === 'leaflet-overlay-pane')
+      {
+         L.DomEvent.removeListener(this.popup._container, 'mouseout', popup_mouseout_fct);
+         this.layer.closePopup();
+      }
+   }
+
+
+
    function addGeojsonLayerWithTC(element_id, template_content) {
      /**
       * Add a geolayer on the map knowing the template content
@@ -36,18 +53,17 @@ var webgis = function() {
 
       if(template_content) {
          leaflet_config.onEachFeature = function (feature, layer) {
-            var popup_content =  Mustache.render(template_content, feature.properties);
+            var popup_content = Mustache.render(template_content, feature.properties);
             /* click pop-up */
-            layer.bindPopup(popup_content);
+            //layer.bindPopup(popup_content);
 
             /* hover pop-up */
-            /*
             layer.on({
                mouseover: function() {
                   this.bindPopup(popup_content).openPopup();
+                  L.DomEvent.addListener(this, 'mouseout', marker_mouseout_fct, {'layer': this});
                }
             });
-            */
          };
       }
 
@@ -138,9 +154,9 @@ var webgis = function() {
             });
 
             var hillshade_layer = new L.tileLayer('./tiles/hillshade/{z}/{x}/{y}.png', {
-                minZoom: 8,
-                maxZoom: 14,
-                tms: true
+               minZoom: 8,
+               maxZoom: 14,
+               tms: true
             });
 
             map.addLayer(google_layer);
@@ -148,10 +164,10 @@ var webgis = function() {
             map.addLayer(hillshade_layer);
 
             map.addControl(
-                    new L.Control.Layers({
-                        'Open Street Map':osm_layer, 
-                        'Google Satelite': google_layer
-                    },{'Relief' : hillshade_layer },{ position: 'topleft' }));
+               new L.Control.Layers({
+                  'Open Street Map':osm_layer,
+                  'Google Satelite': google_layer
+               },{'Relief' : hillshade_layer },{ position: 'topleft' }));
 
             new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
