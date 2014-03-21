@@ -63,6 +63,7 @@ html, body, #map {
 #map_menu .layer_title :hover {
    /* text-decoration: underline;*/
    color: #9ABC46;
+   cursor: default;
 }
 
 #map_menu .layer_title img {
