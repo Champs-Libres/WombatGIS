@@ -42,6 +42,9 @@ if(isset($_POST["form_id"])) {
    } elseif ($_POST["form_id"] == "geojson_update") {
       $json_array = upload_file_and_json_array_update($json_array,$element_id,"geojson");
       $message = "GeoJSON mis à jour";
+   } elseif ($_POST["form_id"] == "geojson_delete") {
+      $json_array = json_array_delete_element_field($json_array, $element_id, "geojson");
+      $message = "GeoJSON supprimé";
    }
    json_array_save($json_array);
    echo "<div class=\"message success\">" . $message . "</div>";
@@ -59,21 +62,41 @@ $element = $json_array["elements"][$element_id];
 <form method="post">
    <input type="hidden" name="form_id" value="menu_title">
    <input type="input" name="menu_title" value="<?php echo json_array_get_element_field($json_array,$element_id,"menu_title","");  ?>">
-   <input type="submit" value="Modifier">
+   <input type="submit" value="Modifier"> (pour supprimer laisser ce champ vide)
 </form>
 
 <h2>Edition du GeoJSON</h2> 
 
-<p>
-   GeoJSON actucel:
-   <?php display_element_field($json_array, $element_id, "geojson", "pas de geojson"); ?>
-</p>
+<?php 
+if(array_key_exists("geojson", $element)) {
+   ?>
+
+   <form method="post" style="margin-bottom:10px">
+      GeoJSON actuel: <?php echo $element["geojson"]; ?>
+   
+      <input type="hidden" name="form_id" value="geojson_delete">
+      <input type="submit" value="Supprimer le GeoJSON">
+   </form>
 
    <form enctype="multipart/form-data" method="post">
       <input type="hidden" name="form_id" value="geojson_update">
       <input type="file" name="webgis_file">
-      <input type="submit" value="Mettre à jour le geojson">
+      <input type="submit" value="Mettre à jour le GeoJSON">
    </form>
+   <?php
+} else {
+   ?>
+   <p>
+      Il n'y a pas de GeoJSON.
+   </p>
+
+   <form enctype="multipart/form-data" method="post">
+      <input type="hidden" name="form_id" value="geojson_update">
+      <input type="file" name="webgis_file">
+      <input type="submit" value="Ajouter ce GeoJSON">
+   </form>
+   <?php
+} ?>
 
 <h2>Choix de l'icône des marqueurs (pour les points)</h2>
 
