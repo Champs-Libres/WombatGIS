@@ -1,1 +1,14 @@
-<b style="font-size: larger;">{{ NOM }}</b>
+<div class="webgis_pop_up_content">
+    
+    <div class="pop_up_top">
+    
+        {{ #lien_photo }}<a class="photo" target="_blank" href="{{ lien_photo }}"> {{ /lien_photo }}
+        {{ #photo_url }}<img class="main"  src="{{ photo_url }}" />{{ /photo_url }}
+        {{ #lien_photo }} </a>{{ /lien_photo }}
+        
+        <p class="head"><b style="font-size: larger;">{{ NOM }}</b></p>
+        
+    </div>
+        
+
+</div>

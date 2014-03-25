@@ -1,7 +1,38 @@
-<p><strong>Nom des producteurs&nbsp;:</strong> {{ Nom }} ({{ Nom produc }})</p>
+<div class="webgis_pop_up_content">
+    
+    <div class="pop_up_top">
+    
+        {{ #Site Web }}<a class="photo" target="_blank" href="{{ Site Web }}"> {{ /Site Web }}
+        {{ #photo_url }}<img class="main"  src="{{ photo_url }}" />{{ /photo_url }}
+        {{ #Site Web }} </a>{{ /Site Web }}
+        
+        <p class="head"><b style="font-size: larger;">{{ Nom }}</b></p>
+        
+    </div>
+        
+    <div class="webgis_pop_up_sub_content">
 
-<p><strong>Produits&nbsp;:</strong> {{ Produits }}</p>
+        <dl>
+            <dt>Adresse</dt>
+            <dd>{{ Adresse }}</dd>
+            
+            <dt>Produits</dt>
+            <dd>{{ Produits }}</dd>
+            
+            <dt>Horaires</dt>
+            <dd>{{ Horaire }}</dd>
+            
+            {{ #Contact }}
+            <dt>Contact</dt>
+            <dd>{{ Contact }}</dd>
+            {{ /Contact }}
+            
+            {{ #Site Web }}
+            <dt>Site web</dt>
+            <dd><a href="{{ Site Web }}" target="_blank">{{ Site Web }}</a></dd>
+            {{ /Site Web }}
+        </dl>
 
-<p><strong>Heures d’ouverture&nbsp;:</strong> {{ Horaires }}</p>
+    </div>
 
-<p><strong>Contact&nbsp;:</strong> {{ Adresse }} ({{ Contact }}{{#Site Web}} - <a href="{{ Site Web }}" target="_blank">{{ Site Web }}</a>{{/Site Web}})</p>
+</div>

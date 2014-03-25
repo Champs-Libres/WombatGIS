@@ -1,9 +1,39 @@
-<b style="font-size: larger;">{{ Nom }}</b>
+<div class="webgis_pop_up_content">
+    
+    <div class="pop_up_top">
+    
+        {{ #lien_photo }}<a class="photo" target="_blank" href="{{ lien_photo }}"> {{ /lien_photo }}
+        {{ #photo_url }}<img class="main"  src="{{ photo_url }}" />{{ /photo_url }}
+        {{ #lien_photo }} </a>{{ /lien_photo }}
+        
+        <p class="head"><b style="font-size: larger;">{{ Nom }}</b></p>
+        
+    </div>
+        
+    <div class="webgis_pop_up_sub_content">
 
-<p><strong>Adresse&nbsp;:</strong> {{ Adresse }}</p>
+        <dl>
+            <dt>Adresse</dt>
+            <dd>{{ Adresse }}</dd>
+            
+            <dt>Produits</dt>
+            <dd>{{ Produits }}</dd>
+            
+            <dt>Horaires</dt>
+            <dd>{{ Horaire }}</dd>
+            
+            {{ #Contact }}
+            <dt>Contact</dt>
+            <dd>{{ Contact }}</dd>
+            {{ /Contact }}
+            
+            {{ #lien_photo }}
+            <dt>Site web</dt>
+            <dd><a href="{{ lien_photo }}" target="_blank">{{ lien_photo }}</a></dd>
+            {{ /lien_photo }}
+        </dl>
 
-<p><strong>Produits&nbsp;:</strong> {{ Produits }}</p>
+    </div>
 
-<p><strong>Horaires&nbsp;:</strong> {{ Horaires }}</p>
+</div>
 
-<p><strong>Site web&nbsp;:</strong> <a href="{{ Contact }}" target="_blank">{{ Contact }}</a></p>
