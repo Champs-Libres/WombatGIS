@@ -22,7 +22,7 @@ if(isset($_POST["element_id"])) {
 
 <?php    
    for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
-      echo $i . ". " . json_array_get_element_field($json_array, $i, "menuTitle", "[sans titre]"). "<br />" . PHP_EOL;
+      echo $i . ". " . json_array_get_element_field($json_array, $i, "menu_title", "[sans titre]"). "<br />" . PHP_EOL;
    }
 ?>
 
@@ -33,7 +33,7 @@ if(isset($_POST["element_id"])) {
    <select name="element_id">
       <?php 
       for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
-         echo "<option value=\"". $i ."\">" . $i . ". " . json_array_get_element_field($json_array, $i, "menuTitle", "[sans titre]") . "</option>";
+         echo "<option value=\"". $i ."\">" . $i . ". " . json_array_get_element_field($json_array, $i, "menu_title", "[sans titre]") . "</option>";
       }
       ?>
    </select>

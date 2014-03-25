@@ -13,8 +13,8 @@ $element_id = $_GET["id"];
 display_header("Mise à jour d'un élement");
 
 if(isset($_POST["form_id"])) {
-   if($_POST["form_id"] == "menuTitle") {
-      $json_array = json_array_edit_element_field($json_array, $element_id, "menuTitle", $_POST["menuTitle"]);
+   if($_POST["form_id"] == "menu_title") {
+      $json_array = json_array_edit_element_field($json_array, $element_id, "menu_title", $_POST["menu_title"]);
       $message = "Titre mis à jour";
    } elseif($_POST["form_id"] == "icon") {
       if($_POST["icon"] == "") {
@@ -53,12 +53,12 @@ $element = $json_array["elements"][$element_id];
 
 <p>
    Titre actuel:  
-   <?php display_element_field($json_array, $element_id, "menuTitle", "pas de titre (l'élément n'est pas affiché dans le menu)"); ?>
+   <?php display_element_field($json_array, $element_id, "menu_title", "pas de titre (l'élément n'est pas affiché dans le menu)"); ?>
 </p>
 
 <form method="post">
-   <input type="hidden" name="form_id" value="menuTitle">
-   <input type="input" name="menuTitle" value="<?php echo json_array_get_element_field($json_array,$element_id,"menuTitle","");  ?>">
+   <input type="hidden" name="form_id" value="menu_title">
+   <input type="input" name="menu_title" value="<?php echo json_array_get_element_field($json_array,$element_id,"menu_title","");  ?>">
    <input type="submit" value="Modifier">
 </form>
 
