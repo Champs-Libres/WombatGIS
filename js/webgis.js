@@ -70,15 +70,17 @@ var webgis = function() {
          leaflet_config.onEachFeature = function (feature, layer) {
             var popup_content = Mustache.render(template_content, feature.properties);
             /* click pop-up */
-            //layer.bindPopup(popup_content);
+            layer.bindPopup(popup_content);
 
             /* hover pop-up */
+            /*
             layer.on({
                mouseover: function() {
                   this.bindPopup(popup_content).openPopup();
                   L.DomEvent.addListener(this, 'mouseout', marker_mouseout_fct, {'layer': this});
                }
             });
+*/
          };
       }
 
