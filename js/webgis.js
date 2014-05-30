@@ -25,36 +25,6 @@ var webgis = function() {
       elements[element_id].displayed = ! elements[element_id].displayed;
    }
 
-   function marker_mouseout_fct(e) {      
-      var popup = this.layer._popup;
-      var target = e.originalEvent.fromElement || e.originalEvent.relatedTarget;
-      //var target = e.toElement || e.relatedTarget;
-      if($(target).parent().hasClass('leaflet-popup') 
-         || $(target).parent().hasClass('leaflet-popup-tip-container') ) {
-         L.DomEvent.addListener(popup._container, 'mouseout', popup_mouseout_fct, {'popup': popup, 'layer': this.layer});
-         L.DomEvent.removeListener(this.layer, 'mouseout', marker_mouseout_fct);
-      }
-      else {
-         console.log($(target).parent().attr('class'));
-         this.layer.closePopup();
-         L.DomEvent.removeListener(this.layer, 'mouseout', marker_mouseout_fct);
-         console.log(close);
-      }
-   }
-
-   function popup_mouseout_fct (e) {
-      var target = e.toElement || e.relatedTarget;
-      console.log($(target).parent().attr('class'));
-      if($(target).parent().hasClass('leaflet-overlay-pane'))
-      {
-         console.log("popup_mouseout_fct");
-         L.DomEvent.removeListener(this.popup._container, 'mouseout', popup_mouseout_fct);
-         this.layer.closePopup();
-      }
-   }
-
-
-
    function addGeojsonLayerWithTC(element_id, template_content) {
      /**
       * Add a geolayer on the map knowing the template content
@@ -69,18 +39,8 @@ var webgis = function() {
       if(template_content) {
          leaflet_config.onEachFeature = function (feature, layer) {
             var popup_content = Mustache.render(template_content, feature.properties);
-            /* click pop-up */
+            $("#popup_content_loader").html(popup_content);
             layer.bindPopup(popup_content);
-
-            /* hover pop-up */
-            /*
-            layer.on({
-               mouseover: function() {
-                  this.bindPopup(popup_content).openPopup();
-                  L.DomEvent.addListener(this, 'mouseout', marker_mouseout_fct, {'layer': this});
-               }
-            });
-*/
          };
       }
 

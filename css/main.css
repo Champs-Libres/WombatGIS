@@ -112,7 +112,7 @@ html, body, #map {
 }
 
 
-#img_loader_container {
+#img_loader_container, #popup_content_loader {
    position: absolute;
 }
 
