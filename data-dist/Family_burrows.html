@@ -1,0 +1,22 @@
+<div class="webgis_pop_up_content">
+   <div class="pop_up_top">
+      {{ #photo }}<img class="main"  src="{{ photo }}" />{{ /photo }}
+           
+      <p class="head"><b style="font-size: larger;">{{ Burrow Name }}</b></p>
+   </div>
+        
+   <div class="webgis_pop_up_sub_content">
+      <dl>
+         <dt>Members</dt>
+         {{#members}}
+            <dd>{{name}}</dd>
+         {{/members}}  
+      </dl>
+      {{#photo src}}
+      <dl>
+         <dt>Photo source</dt>
+         <dd><a href="{{photo src}}" target="_blank">{{photo src}}</a></dd>
+      </dl>
+      {{/photo src}}
+   </div>
+</div>

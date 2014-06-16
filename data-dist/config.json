@@ -1,0 +1,44 @@
+{
+   "map_center_lon":"-36.884",
+   "map_center_lat":"148.053",
+   "map_zoom_level":"7",
+   "background_layers": [
+      "Open Street Map - Standard",
+      "Open Street Map - Humanitarian"
+   ],
+   "elements":[ {
+      "menu_title":"My family"
+   },{
+      "menu_title":"Territory",
+      "geojson":"data\/Family_territory.geojson",
+      "style":{
+         "weight":3,
+         "color":"#000",
+         "fillColor":"#fff356",
+         "fillOpacity":0.3
+      }
+   },{
+      "menu_title":"Burrows",
+      "geojson":"data\/Family_burrows.geojson",
+      "template":"data\/Family_burrows.html",
+      "icon":"leaflet-green.png",
+      "icon_shadow":"leaflet-shadow.png"
+   },{
+      "menu_title":"Survival"
+   },{
+      "menu_title":"Danger zones",
+      "geojson":"data\/Survival_danger_zones.geojson",
+      "style":{
+         "weight":0,
+         "fillColor":"#F00",
+         "fillOpacity":0.5
+      }
+   },{
+      "menu_title":"Training paths",
+      "geojson":"data\/Survival_training_paths.geojson",
+      "style":{
+         "weight":2,
+         "color":"#008"
+      }
+   } ]
+}

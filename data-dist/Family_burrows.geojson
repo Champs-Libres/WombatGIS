@@ -1,0 +1,96 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+   {
+      "type": "Feature",
+      "properties": {
+         "photo" : "http://upload.wikimedia.org/wikipedia/commons/7/7b/Wombat_burrow-Narawntapu.JPG",
+         "Burrow Name" : "Oak-tree Burrow",
+         "members" : [
+            {"name": "Aunt Ginette"},
+            {"name": "Uncle Will"}
+         ],
+         "photo src" : "http://en.wikipedia.org/wiki/File:Wombat_burrow-Narawntapu.JPG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          148.040771484375,
+          -36.37706783983681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "photo" : "http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Wombat-Narawntapu.jpg/800px-Wombat-Narawntapu.jpg",
+         "photo src": "http://en.wikipedia.org/wiki/File:Wombat-Narawntapu.jpg",
+         "Burrow Name" : "Sunny Burrow",
+         "members" : [
+            {"name": "Aunt Arlette"},
+            {"name": "Uncle Igor"}
+         ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          149.58984375,
+          -36.40359962073253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "photo" : "http://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Vombatus_ursinus_-Maria_Island_National_Park.jpg/800px-Vombatus_ursinus_-Maria_Island_National_Park.jpg",
+         "photo src": "http://en.wikipedia.org/wiki/File:Vombatus_ursinus_-Maria_Island_National_Park.jpg",
+         "Burrow Name" : "Salmon-fish Burrow",
+         "members" : [
+            {"name": "GrandPa"},
+            {"name": "GrandMa"}
+         ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          148.359375,
+          -37.37015718405751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "Burrow Name" : "Blueberry Burrow",
+         "members" : [
+            {"name": "Aunt Sara"},
+            {"name": "Uncle George"}
+         ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          146.9091796875,
+          -37.39634613318924
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "Burrow Name" : "River Burrow",
+         "members" : [
+            {"name": "Aunt Anne"},
+            {"name": "Uncle Pierre"}
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          146.09619140625,
+          -37.52715361723378
+        ]
+      }
+    }
+  ]
+}

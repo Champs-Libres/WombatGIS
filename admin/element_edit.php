@@ -25,6 +25,15 @@ if(isset($_POST["form_id"])) {
          $json_array = json_array_edit_element_field($json_array, $element_id, "icon", $_POST["icon"]);
          $message = "Icône mise à jour";
       }
+   elseif($_POST["form_id"] == "icon_shadow") {
+      if($_POST["icon_shadow"] == "") {
+         $json_array = json_array_delete_element_field($json_array, $element_id, "icon_shadow");
+         $message = "Ombre supprimée";
+      }
+      else {
+         $json_array = json_array_edit_element_field($json_array, $element_id, "icon_shadow", $_POST["icon_shadow"]);
+         $message = "Ombre mise à jour";
+      }   
    } elseif($_POST["form_id"] == "style") {
       $new_style = json_decode($_POST["style"],true);
       $json_array = json_array_edit_element_field($json_array, $element_id, "style", $new_style);
@@ -114,7 +123,7 @@ if(array_key_exists("geojson", $element)) {
          $dir = "../img/marker";
          $files = scandir($dir);
          foreach ($files as $file) {
-            if ($file != '..' and $file != '.') {
+            if ($file != '..' and $file != '.' and $file != 'README.md') {
                if($element["icon"] == $file) {
                   echo "<option value=\"" . $file . "\" selected>" . $file . "</option>";
                }
@@ -126,6 +135,31 @@ if(array_key_exists("geojson", $element)) {
       ?>
    </select>
    <input type="submit" value="Choisir cette icône"> ( <a href="marker_icons_list.php" target="blank">liste des icônes</a> )
+</form>
+</p>
+
+<p>
+<form method="post">
+   <input type="hidden" name="form_id" value="icon_shadow">
+   <select name="icon_shadow">
+      <option value="">Pas d'ombre</option>
+      <?php
+         $dir = "../img/marker";
+         $files = scandir($dir);
+         foreach ($files as $file) {
+            if ($file != '..' and $file != '.' and $file != 'README.md') {
+               echo $element["icon_shadow"];
+               if($element["icon_shadow"] == $file) {
+                  echo "<option value=\"" . $file . "\" selected>" . $file . "</option>";
+               }
+               else {
+                  echo "<option value=\"" . $file . "\">" . $file . "</option>";
+               }
+            }
+         }
+      ?>
+   </select>
+   <input type="submit" value="Choisir cette ombre"> ( <a href="marker_icons_list.php" target="blank">liste des ombres</a> )
 </form>
 </p>
 

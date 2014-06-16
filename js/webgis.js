@@ -16,11 +16,11 @@ var webgis = function() {
       */
       if (elements[element_id].displayed) {
          map.removeLayer(elements[element_id].layer);
-         $("#title_layer_" + element_id).removeClass("layer_title_selected");
+         $('#title_layer_' + element_id).removeClass('layer_title_selected');
       }
       else {
          addGeojsonLayer(element_id);
-         $("#title_layer_" + element_id).addClass("layer_title_selected");
+         $('#title_layer_' + element_id).addClass('layer_title_selected');
       }
       elements[element_id].displayed = ! elements[element_id].displayed;
    }
@@ -39,7 +39,7 @@ var webgis = function() {
       if(template_content) {
          leaflet_config.onEachFeature = function (feature, layer) {
             var popup_content = Mustache.render(template_content, feature.properties);
-            $("#popup_content_loader").html(popup_content);
+            $('#popup_content_loader').html(popup_content);
             layer.bindPopup(popup_content);
          };
       }
@@ -56,12 +56,18 @@ var webgis = function() {
             var img_height = img.height();
             var img_width = img.width();
             var img_center = Math.floor(img.width() / 2) + 1;
-            icon = L.icon({
+            var icon_config = {
                iconUrl: 'img/marker/' + element.icon,
                iconSize: [img_width, img_height], // size of the icon
                iconAnchor: [img_center, img_height], // point of the icon which will correspond to marker's location 
                popupAnchor: [0, 10 - img_height]
-            });
+            };
+
+            if('icon_shadow' in element) {
+               icon_config.shadowUrl = 'img/marker/' + element.icon_shadow;
+            }
+
+            icon = L.icon(icon_config);
 
             leaflet_config.pointToLayer = function (feature, latlng) {
                return L.marker(latlng, {icon: icon});
@@ -115,36 +121,33 @@ var webgis = function() {
 
       $(document).ready(function() {
          $.get('data/config.json', function(config) {
-            var google_layer, osm_layer;
+            var layers = [], layer_list = {};
             var i, max_i;
 
             map = new L.map('map', {
                zoomControl: false,
             }).setView([config.map_center_lon, config.map_center_lat], config.map_zoom_level);
 
-            google_layer =  new L.Google('SATELLITE');
 
-            //http://c.tile.openstreetmap.fr/hot/15/16891/11086.png
-            osm_layer = new L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-               attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-               maxZoom: 18,
-            });
-
-            var hillshade_layer = new L.tileLayer('./tiles/hillshade/{z}/{x}/{y}.png', {
-               minZoom: 8,
-               maxZoom: 14,
-               tms: true
-            });
-
-            map.addLayer(google_layer);
-            map.addLayer(osm_layer);
-            map.addLayer(hillshade_layer);
+            for (i = 0, max_i = config.background_layers.length;  i < max_i; i = i +1) {
+               if(config.background_layers[i] === 'Open Street Map - Standard' || 
+                  config.background_layers[i] === 'Open Street Map') {
+                  layers[i] = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                     maxZoom: 18,
+                  });
+               } else if (config.background_layers[i] === 'Open Street Map - Humanitarian') {
+                  layers[i] = new L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+                     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                     maxZoom: 18,
+                  });
+               }
+               map.addLayer(layers[i]);
+               layer_list[config.background_layers[i]] = layers[i];
+            }
 
             map.addControl(
-               new L.Control.Layers({
-                  'Open Street Map':osm_layer,
-                  'Google Satelite': google_layer
-               },{'Relief' : hillshade_layer },{ position: 'topleft' }));
+               new L.Control.Layers(layer_list, {}, { position: 'topleft' }));
 
             new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
@@ -160,8 +163,12 @@ var webgis = function() {
                         $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><img id="title_layer_' + i + '_icon" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menu_title + '</div></div>');
                      }
                      else if ('style' in elements[i])  {
-                        $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_line" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
-                           /*   background-color: #DDDDDD; border: 3px solid #000000; opacity: 0.1; */
+                        if('fillColor' in elements[i].style) {
+                           $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_box" style="background-color:' + elements[i].style.fillColor + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
+                        } else  {
+                           $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_line" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
+                        }
+                           /*   background-color: #DDDDDD;  */
                      } else {
                         $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon"></div></div><div>'+ elements[i].menu_title + '</div></div>');
                      }
