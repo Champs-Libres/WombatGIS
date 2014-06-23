@@ -14,6 +14,7 @@ WombatGIS is php / javascript application to draw / display graphical informatio
 
 `cp -R data-dist data`
 `cp -R css-dist css`
+`cp -R img-dist img`
 
 ## Configuration
 
