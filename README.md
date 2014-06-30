@@ -8,7 +8,7 @@ WombatGIS is php / javascript application to draw / display graphical informatio
 
 ![screenshot](https://raw.githubusercontent.com/Champs-Libres/WombatGIS/master/overview.png)
 
-(http://wombatgis.champs-libres.coop/)
+Demo : (http://wombatgis.champs-libres.coop/)
 
 ## Prerequisites
 
