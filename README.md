@@ -1,12 +1,12 @@
 # WombatGIS
 
-![screenshot](https://redmine.champs-libres.coop/projects/wombatgis/repository/revisions/master/entry/img-dist/logo_black.png)
+![screenshot](https://raw.githubusercontent.com/Champs-Libres/WombatGIS/master/img-dist/logo_black.png)
 
 ## Presentation
 
 WombatGIS is php / javascript application to draw / display graphical information on maps.
 
-![screenshot](https://redmine.champs-libres.coop/projects/wombatgis/repository/revisions/master/entry/overview.png)
+![screenshot](https://raw.githubusercontent.com/Champs-Libres/WombatGIS/master/overview.png)
 
 (http://wombatgis.champs-libres.coop/)
 
