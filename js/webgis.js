@@ -161,7 +161,7 @@ var webgis = function() {
                for (i = 0, max_i = config.overlays.length;  i < max_i; i = i +1) {
                   layer = new L.tileLayer(config.overlays[i].url, config.overlays[i].options);
                   map.addLayer(layer);
-                  overlays[config.base_layers[i]] = layer;
+                  overlays[config.overlays[i].title = layer;
                }
             }
 
