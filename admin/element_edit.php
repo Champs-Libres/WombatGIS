@@ -25,7 +25,7 @@ if(isset($_POST["form_id"])) {
          $json_array = json_array_edit_element_field($json_array, $element_id, "icon", $_POST["icon"]);
          $message = "Icône mise à jour";
       }
-   elseif($_POST["form_id"] == "icon_shadow") {
+   } elseif($_POST["form_id"] == "icon_shadow") {
       if($_POST["icon_shadow"] == "") {
          $json_array = json_array_delete_element_field($json_array, $element_id, "icon_shadow");
          $message = "Ombre supprimée";
