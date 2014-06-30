@@ -121,7 +121,7 @@ var webgis = function() {
 
       $(document).ready(function() {
          $.get('data/config.json', function(config) {
-            var base_layers = {}
+            var base_layers = {};
             var overlays = {};
             var i, max_i;
             var layer;
@@ -136,7 +136,7 @@ var webgis = function() {
 
             for (i = 0, max_i = config.base_layers.length;  i < max_i; i = i +1) {
                layer = null;
-               if(config.base_layers[i] === 'Open Street Map - Standard' || 
+               if(config.base_layers[i] === 'Open Street Map - Standard' ||
                   config.base_layers[i] === 'Open Street Map') {
                   layer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -161,7 +161,7 @@ var webgis = function() {
                for (i = 0, max_i = config.overlays.length;  i < max_i; i = i +1) {
                   layer = new L.tileLayer(config.overlays[i].url, config.overlays[i].options);
                   map.addLayer(layer);
-                  overlays[config.overlays[i].title = layer;
+                  overlays[config.overlays[i].title] = layer;
                }
             }
 
