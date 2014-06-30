@@ -16,12 +16,14 @@ WombatGIS is php / javascript application to draw / display graphical informatio
 `cp -R css-dist css`
 `cp -R img-dist img`
 
-If data is not owned by www-data user :
+If the directory `data` is not owned by `www-data` user :
 
 `sudo chown -R www-data data`
 
-## Configuration
+## How does it works ?
 
 The configuration files are in the directory `data`.
-The file `config.json` is used ti configure the global map and the file `name_of_the_layer.json` to configure
-the relative layer.
+
+The file `config.json` is used to configure the global map and the files `__name_of_the_layer__.json` to configure the relative layer.
+
+There exists a web interface in the directory `admin` for editing the configuration files.
