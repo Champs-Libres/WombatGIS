@@ -2,7 +2,7 @@
    "map_center_lon":"-36.884",
    "map_center_lat":"148.053",
    "map_zoom_level":"7",
-   "background_layers": [
+   "base_layers": [
       "Open Street Map - Standard",
       "Open Street Map - Humanitarian"
    ],

@@ -121,33 +121,52 @@ var webgis = function() {
 
       $(document).ready(function() {
          $.get('data/config.json', function(config) {
-            var layers = [], layer_list = {};
+            var base_layers = {}
+            var overlays = {};
             var i, max_i;
+            var layer;
+
+            if(document && config.page_title) {
+               document.title = config.page_title;
+            }
 
             map = new L.map('map', {
                zoomControl: false,
             }).setView([config.map_center_lon, config.map_center_lat], config.map_zoom_level);
 
-
-            for (i = 0, max_i = config.background_layers.length;  i < max_i; i = i +1) {
-               if(config.background_layers[i] === 'Open Street Map - Standard' || 
-                  config.background_layers[i] === 'Open Street Map') {
-                  layers[i] = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            for (i = 0, max_i = config.base_layers.length;  i < max_i; i = i +1) {
+               layer = null;
+               if(config.base_layers[i] === 'Open Street Map - Standard' || 
+                  config.base_layers[i] === 'Open Street Map') {
+                  layer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                      maxZoom: 18,
                   });
-               } else if (config.background_layers[i] === 'Open Street Map - Humanitarian') {
-                  layers[i] = new L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+               } else if (config.base_layers[i] === 'Open Street Map - Humanitarian') {
+                  layer = new L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                      maxZoom: 18,
                   });
+               } else if (config.base_layers[i] === 'Google Satelite') {
+                  layer = new L.Google('SATELLITE');
                }
-               map.addLayer(layers[i]);
-               layer_list[config.background_layers[i]] = layers[i];
+
+               if(layer) {
+                  map.addLayer(layer);
+                  base_layers[config.base_layers[i]] = layer;
+               }
+            }
+
+            if(config.overlays) {
+               for (i = 0, max_i = config.overlays.length;  i < max_i; i = i +1) {
+                  layer = new L.tileLayer(config.overlays[i].url, config.overlays[i].options);
+                  map.addLayer(layer);
+                  overlays[config.base_layers[i]] = layer;
+               }
             }
 
             map.addControl(
-               new L.Control.Layers(layer_list, {}, { position: 'topleft' }));
+               new L.Control.Layers(base_layers, overlays, { position: 'topleft' }));
 
             new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
