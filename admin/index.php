@@ -28,15 +28,28 @@ display_header("Administration",false);
 <h2>Elements et ordre d'affichage</h2>
 <center>
 <table width="100%">
+   <tr>
+      <th>#</th>
+      <th>Titre 
+         <br />(vide : pas dans le menu)</th>
+      <th>GeoJson
+         <br />(vide : titre dans le menu)</th>
+      <th>Template</th>
+      <th>Affichage au chargement<br />
+         (0 : affiché, 1 : pas affiché)</th>
+      <th></th>
+      <th></th>
+   </tr>
 <?php
 for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
    echo "<tr>" . PHP_EOL;
    echo "<td>" . $i . "</td>" . PHP_EOL; 
-   display_td_element_field($json_array, $i, "menu_title", "[ne se trouve pas dans le menu (pas de titre)]");
-   display_td_element_field($json_array, $i, "geojson", "[titre du menu (pas de geojson)]");
+   display_td_element_field($json_array, $i, "menu_title", "[vide]");
+   display_td_element_field($json_array, $i, "geojson", "[vide]");
+   display_td_element_field($json_array, $i, "at_start_not_displayed", "0 [affiché]");
    display_td_element_field($json_array, $i, "template", "[pas de template]");
-   echo "<td><a href=\"element_edit.php?id={$i}\">Modifier l'élément</a></td>" . PHP_EOL;
-   echo "<td><a href=\"element_delete.php?id={$i}\">Supprimer l'élément</a></td>" . PHP_EOL;
+   echo "<td><a href=\"element_edit.php?id={$i}\">Modifier</a></td>" . PHP_EOL;
+   echo "<td><a href=\"element_delete.php?id={$i}\">Supprimer</a></td>" . PHP_EOL;
    echo "</tr>" . PHP_EOL;
 }
 ?>

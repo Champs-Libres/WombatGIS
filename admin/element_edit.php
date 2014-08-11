@@ -54,6 +54,13 @@ if(isset($_POST["form_id"])) {
    } elseif ($_POST["form_id"] == "geojson_delete") {
       $json_array = json_array_delete_element_field($json_array, $element_id, "geojson");
       $message = "GeoJSON supprimé";
+   } elseif ($_POST["form_id"] == "at_start_not_displayed") {
+      if ($_POST["at_start_not_displayed"]) {
+         $json_array = json_array_edit_element_field($json_array, $element_id, "at_start_not_displayed", true);
+      } else {
+         $json_array = json_array_delete_element_field($json_array, $element_id, "at_start_not_displayed");
+      }
+      $message = "Affichage par defaut mis à jour";
    }
    json_array_save($json_array);
    echo "<div class=\"message success\">" . $message . "</div>";
@@ -92,6 +99,26 @@ if(array_key_exists("geojson", $element)) {
       <input type="file" name="webgis_file">
       <input type="submit" value="Mettre à jour le GeoJSON">
    </form>
+
+
+   <h3>Afficher le layer au chargment</h3>
+
+   Affichage actuel : <?php
+   if(array_key_exists("at_start_not_displayed", $element) && $element["at_start_not_displayed"]) {
+      ?> pas affiché <?php
+   } else {
+      ?> affiché <?php
+   } 
+   ?>
+
+   <form method="post">
+   <input type="hidden" name="form_id" value="at_start_not_displayed">
+   Mettre à jour :
+   <input type="radio" name="at_start_not_displayed" value="0">Afficher
+   <input type="radio" name="at_start_not_displayed" value="1">Ne pas afficher
+   <input type="submit" value="Modifier">
+</form>
+
    <?php
 } else {
    ?>
