@@ -34,9 +34,9 @@ display_header("Administration",false);
          <br />(vide : pas dans le menu)</th>
       <th>GeoJson
          <br />(vide : titre dans le menu)</th>
-      <th>Template</th>
       <th>Affichage au chargement<br />
          (0 : affiché, 1 : pas affiché)</th>
+      <th>Template</th>
       <th></th>
       <th></th>
    </tr>
