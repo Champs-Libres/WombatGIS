@@ -173,10 +173,13 @@ var webgis = function() {
             elements = config.elements;
 
             for (i = 0, max_i = elements.length;  i < max_i; i = i +1) {
-               elements[i].displayed = true;
-
                if(elements[i].geojson) {
-                  addGeojsonLayer(i);
+                  if(elements[i].at_start_not_displayed) {
+                     elements[i].displayed = false;
+                  } else {
+                     elements[i].displayed = true;
+                     addGeojsonLayer(i);
+                  }
                   if(elements[i].menu_title) { //couche geojson
                      if('icon' in elements[i]) {
                         $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><img id="title_layer_' + i + '_icon" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menu_title + '</div></div>');
