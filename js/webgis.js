@@ -174,25 +174,27 @@ var webgis = function() {
 
             for (i = 0, max_i = elements.length;  i < max_i; i = i +1) {
                if(elements[i].geojson) {
+                  var css_class = 'layer_title';
                   if(elements[i].at_start_not_displayed) {
                      elements[i].displayed = false;
                   } else {
                      elements[i].displayed = true;
+                     css_class += ' layer_title_selected';
                      addGeojsonLayer(i);
                   }
                   if(elements[i].menu_title) { //couche geojson
                      if('icon' in elements[i]) {
-                        $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><img id="title_layer_' + i + '_icon" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menu_title + '</div></div>');
+                        $('#map_menu').append('<div class="' + css_class + '" id="title_layer_' + i + '"><div class="layer_icon"><img id="title_layer_' + i + '_icon" src="img/marker/' + elements[i].icon + '" style="margin:auto" /></div><div>' + elements[i].menu_title + '</div></div>');
                      }
                      else if ('style' in elements[i])  {
                         if('fillColor' in elements[i].style) {
-                           $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_box" style="background-color:' + elements[i].style.fillColor + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
+                           $('#map_menu').append('<div class="' + css_class + '" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_box" style="background-color:' + elements[i].style.fillColor + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
                         } else  {
-                           $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_line" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
+                           $('#map_menu').append('<div class="' + css_class + '" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon" class="colored_line" style="background-color:' + elements[i].style.color + ';"></div></div><div>'+ elements[i].menu_title + '</div></div>');
                         }
                            /*   background-color: #DDDDDD;  */
                      } else {
-                        $('#map_menu').append('<div class="layer_title layer_title_selected" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon"></div></div><div>'+ elements[i].menu_title + '</div></div>');
+                        $('#map_menu').append('<div class="' + css_class + '" id="title_layer_' + i + '"><div class="layer_icon"><div id="title_layer_' + i + '_icon"></div></div><div>'+ elements[i].menu_title + '</div></div>');
                      }
                      (function (i) {
                         $('#title_layer_' + i).click( function() {
