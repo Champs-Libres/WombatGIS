@@ -84,7 +84,7 @@ var webgis = function() {
          }
          else {
             $('#img_loader_container').append('<img id="img_' + element_id + '" src="img/marker/' + element.icon + '"></img>');
-            $('#img_'+ element_id).load(executeWhenImgIsLoaded);
+            $('#img_'+ element_id).one("load", executeWhenImgIsLoaded);
          }
       }
 
