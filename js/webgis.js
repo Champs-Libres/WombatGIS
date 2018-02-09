@@ -48,7 +48,7 @@ var webgis = function() {
          leaflet_config.style = element.style;
       }
 
-      
+
       if ('icon' in element) {
          var executeWhenImgIsLoaded = function() {
             var icon;
@@ -59,7 +59,7 @@ var webgis = function() {
             var icon_config = {
                iconUrl: 'img/marker/' + element.icon,
                iconSize: [img_width, img_height], // size of the icon
-               iconAnchor: [img_center, img_height], // point of the icon which will correspond to marker's location 
+               iconAnchor: [img_center, img_height], // point of the icon which will correspond to marker's location
                popupAnchor: [0, 10 - img_height]
             };
 
@@ -78,7 +78,7 @@ var webgis = function() {
                elements[element_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
             });
          };
-         
+
          if($('#img_'  + element_id).length > 0) { //image deja charge
             executeWhenImgIsLoaded();
          }
@@ -206,7 +206,7 @@ var webgis = function() {
                   $('#map_menu').append('<div class="layer_title layer_head">'+ elements[i].menu_title + '</div>');
                }
             }
-         });
+         }, "json");
       });
    }
 
