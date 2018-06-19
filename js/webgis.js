@@ -132,7 +132,7 @@ var webgis = function() {
 
             map = new L.map('map', {
                zoomControl: false,
-            }).setView([config.map_center_lon, config.map_center_lat], config.map_zoom_level);
+            }).setView([config.map_center_lat, config.map_center_lon], config.map_zoom_level);
 
             for (i = 0, max_i = config.base_layers.length;  i < max_i; i = i +1) {
                layer = null;
