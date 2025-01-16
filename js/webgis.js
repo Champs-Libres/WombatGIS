@@ -73,8 +73,7 @@ var webgis = function() {
                return L.marker(latlng, {icon: icon});
             };
 
-            $.get(element.geojson, function(geojson_string) {
-               var geojson = JSON.parse(geojson_string);
+            $.get(element.geojson, function(geojson) {
                elements[element_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
             });
          };
@@ -89,8 +88,7 @@ var webgis = function() {
       }
 
       else {
-         $.get(element.geojson, function(geojson_string) {
-            var geojson = JSON.parse(geojson_string);
+         $.get(element.geojson, function(geojson) {
             elements[element_id].layer = L.geoJson(geojson, leaflet_config).addTo(map);
          });
       }
