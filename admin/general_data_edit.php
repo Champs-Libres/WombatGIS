@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * Webpage used for editing general data of the webgis config file
@@ -24,7 +24,7 @@ if(isset($_POST["lon"])) {
 Longitude : <input type="input" name="lon" value="<?php echo $json_array["map_center_lon"];  ?>"><br>
 Latitude : <input type="input" name="lat" value="<?php echo $json_array["map_center_lat"];  ?>"><br>
 Niveau de zoom : <input type="input" name="zoom" value="<?php echo $json_array["map_zoom_level"];  ?>"><br>
-<input type="submit" value="Editer">
+<input type="submit" value="Sauvegarder">
 </form>
 
 <?php
