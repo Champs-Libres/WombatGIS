@@ -101,7 +101,7 @@ if(array_key_exists("geojson", $element)) {
    </form>
 
 
-   <h3>Afficher le layer au chargment</h3>
+   <h3>Afficher le layer au chargement</h3>
 
    Affichage actuel : <?php
    if(array_key_exists("at_start_not_displayed", $element) && $element["at_start_not_displayed"]) {
@@ -197,6 +197,18 @@ if(array_key_exists("geojson", $element)) {
 </form>
 
 <h2>Choix du style (pour les polygones et lignes)</h2>
+
+<details>
+   <summary>Voir un exemple de style</summary>
+   <div>
+      <p>Le style : </p>
+      <p>{&quot;weight&quot;:3,&quot;color&quot;:&quot;#000&quot;,&quot;fillColor&quot;:&quot;#A6CA1E&quot;,&quot;fillOpacity&quot;:0.1}</p>
+      <p>est appliqué sur ces polygones de communes:</p>
+      </div>
+      <div>
+        <img alt="Exemple de rendu de style" src="img/example-style-1.png" />
+      </div>
+</details>
 
 <p>
    Style actuel:
