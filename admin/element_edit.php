@@ -68,7 +68,7 @@ if(isset($_POST["form_id"])) {
 
 $element = $json_array["elements"][$element_id];
 ?>
-<h2>Edition du titre</h2>
+<h2>Édition du titre</h2>
 
 <p>
    Titre actuel:
@@ -78,10 +78,10 @@ $element = $json_array["elements"][$element_id];
 <form method="post">
    <input type="hidden" name="form_id" value="menu_title">
    <input type="input" name="menu_title" value="<?php echo json_array_get_element_field($json_array,$element_id,"menu_title","");  ?>">
-   <input type="submit" value="Modifier"> (pour supprimer laisser ce champ vide)
+   <input type="submit" value="Modifier"> (pour supprimer, laisser ce champ vide)
 </form>
 
-<h2>Edition du GeoJSON</h2>
+<h2>Édition du GeoJSON</h2>
 
 <?php
 if(array_key_exists("geojson", $element)) {
@@ -215,7 +215,7 @@ if(array_key_exists("geojson", $element)) {
    <input type="submit" value="Modifier">
 </form>
 
-<h2>Edition du template</h2>
+<h2>Édition du template pour le popup</h2>
 <a href="template_example.txt" target="blank">Voir un exemple de template</a>
 <?php
 if(array_key_exists("template", $element)) {
