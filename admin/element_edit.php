@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * Webpage used for editing a layer of the webgis config file
@@ -33,7 +33,7 @@ if(isset($_POST["form_id"])) {
       else {
          $json_array = json_array_edit_element_field($json_array, $element_id, "icon_shadow", $_POST["icon_shadow"]);
          $message = "Ombre mise à jour";
-      }   
+      }
    } elseif($_POST["form_id"] == "style") {
       $new_style = json_decode($_POST["style"],true);
       $json_array = json_array_edit_element_field($json_array, $element_id, "style", $new_style);
@@ -65,13 +65,13 @@ if(isset($_POST["form_id"])) {
    json_array_save($json_array);
    echo "<div class=\"message success\">" . $message . "</div>";
 }
-   
+
 $element = $json_array["elements"][$element_id];
 ?>
-<h2>Edition du titre</h2> 
+<h2>Edition du titre</h2>
 
 <p>
-   Titre actuel:  
+   Titre actuel:
    <?php display_element_field($json_array, $element_id, "menu_title", "pas de titre (l'élément n'est pas affiché dans le menu)"); ?>
 </p>
 
@@ -81,15 +81,15 @@ $element = $json_array["elements"][$element_id];
    <input type="submit" value="Modifier"> (pour supprimer laisser ce champ vide)
 </form>
 
-<h2>Edition du GeoJSON</h2> 
+<h2>Edition du GeoJSON</h2>
 
-<?php 
+<?php
 if(array_key_exists("geojson", $element)) {
    ?>
 
    <form method="post" style="margin-bottom:10px">
       GeoJSON actuel: <?php echo $element["geojson"]; ?>
-   
+
       <input type="hidden" name="form_id" value="geojson_delete">
       <input type="submit" value="Supprimer le GeoJSON">
    </form>
@@ -108,7 +108,7 @@ if(array_key_exists("geojson", $element)) {
       ?> pas affiché <?php
    } else {
       ?> affiché <?php
-   } 
+   }
    ?>
 
    <form method="post">
@@ -215,14 +215,15 @@ if(array_key_exists("geojson", $element)) {
    <input type="submit" value="Modifier">
 </form>
 
-<h2>Edition du template</h2> 
-<?php 
+<h2>Edition du template</h2>
+<a href="template_example.txt" target="blank">Voir un exemple de template</a>
+<?php
 if(array_key_exists("template", $element)) {
    ?>
 
    <form method="post" style="margin-bottom:10px">
       Template actuel: <?php echo $element["template"]; ?>
-   
+
       <input type="hidden" name="form_id" value="tempate_delete">
       <input type="submit" value="Supprimer le template">
    </form>
