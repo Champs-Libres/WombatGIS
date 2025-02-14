@@ -195,7 +195,9 @@ var webgis = (function () {
           }
 
           map.addControl(
-            new L.Control.Layers(base_layers, overlays, { position: "topleft" })
+            new L.Control.Layers(base_layers, overlays, {
+              position: "topright",
+            })
           );
 
           new L.Control.Zoom({ position: "topright" }).addTo(map);
@@ -214,7 +216,7 @@ var webgis = (function () {
               }
               if (elements[i].menu_title) {
                 if ("icon" in elements[i]) {
-                  $("#map_menu").append(
+                  $("#panelContent").append(
                     layerMenuHeader(css_class, i) +
                       ' src="img/marker/' +
                       elements[i].icon +
@@ -223,11 +225,10 @@ var webgis = (function () {
                       "</div></div>"
                   );
                 } else if ("style" in elements[i]) {
-                  console.log(elements[i]);
                   if (elements[i].style) {
                     if ("fillColor" in elements[i].style) {
                       // Polygon
-                      $("#map_menu").append(
+                      $("#panelContent").append(
                         layerMenuHeader(css_class, i) +
                           ' class="colored_box" style="background-color:' +
                           elements[i].style?.fillColor +
@@ -237,7 +238,7 @@ var webgis = (function () {
                       );
                     } else {
                       // Line
-                      $("#map_menu").append(
+                      $("#panelContent").append(
                         layerMenuHeader(css_class, i) +
                           ' class="colored_line" style="background-color:' +
                           elements[i].style?.color +
@@ -248,7 +249,7 @@ var webgis = (function () {
                     }
                   } else {
                     // No style
-                    $("#map_menu").append(
+                    $("#panelContent").append(
                       layerMenuHeader(css_class, i) +
                         ' class="colored_box" style="background-color:#3388ff;"></div></div><div>' +
                         elements[i].menu_title +
@@ -257,7 +258,7 @@ var webgis = (function () {
                   }
                   /*   background-color: #DDDDDD;  */
                 } else {
-                  $("#map_menu").append(
+                  $("#panelContent").append(
                     '<div class="' +
                       css_class +
                       '" id="title_layer_' +
@@ -276,7 +277,7 @@ var webgis = (function () {
                 })(i);
               }
             } else if (elements[i].menu_title) {
-              $("#map_menu").append(
+              $("#panelContent").append(
                 '<div class="layer_title layer_head">' +
                   elements[i].menu_title +
                   "</div>"
@@ -295,3 +296,34 @@ var webgis = (function () {
 })();
 
 webgis.init();
+
+// Hide/show panel function for desktop view. The panel is shown by default.
+var showPanel = true;
+var collapsePanel = function () {
+  if (showPanel === true) {
+    $("div#map_menu").css("width", "50px");
+    $("div#panelContent").css("opacity", "0");
+    $("div#collapseBtn button").text(">");
+    showPanel = !showPanel;
+  } else {
+    $("div#map_menu").css("width", "300px");
+    $("div#panelContent").css("opacity", "1");
+    $("div#collapseBtn button").text("<");
+    showPanel = !showPanel;
+  }
+};
+
+// Hide/show panel function for mobile view. The panel is not shown by default.
+var showPanelXs = false;
+var collapsePanelXs = function () {
+  if (showPanelXs === true) {
+    $("div#map_menu").css("width", "0px");
+    $("div#panelContent").css("opacity", "0");
+    showPanelXs = !showPanelXs;
+  } else {
+    $("div#map_menu").css("width", "calc(100% - 45px)");
+    $("div#panelContent").css("opacity", "1");
+    $("div#navbar").removeClass("in");
+    showPanelXs = !showPanelXs;
+  }
+};

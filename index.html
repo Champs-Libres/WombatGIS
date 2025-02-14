@@ -3,7 +3,7 @@
 <head>
    <title>WombatGIS</title>
    <meta charset="utf-8" />
-
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <link rel="shortcut icon" href="img/favicon.ico" />
    <link rel="stylesheet" href="js/lib/leaflet/leaflet.css" />
    <script src="js/lib/leaflet/leaflet.js"></script>
@@ -16,12 +16,19 @@
    <div id="popup_content_loader"></div>
    <div id="img_loader_container"></div>
    <div id="map_menu">
-      <div class="logo_positionner">
-         <div class="logo">
-            <img src="img/logo.png" />
-         </div>
+      <div id="collapseBtn">
+         <button type="button" class="collapse_btn" onclick="collapsePanel();">
+            <
+         </button>
       </div>
-      <div id="champs-libres_ref"><a href="http://www.champs-libres.coop" target="_blank">Réalisé par Champs Libres</a></div>
+      <div id="panelContent">
+         <div class="logo_positionner">
+            <div class="logo">
+               <img src="img/logo.png" />
+            </div>
+         </div>
+         <div id="champs-libres_ref"><a href="http://www.champs-libres.coop" target="_blank">Réalisé par Champs Libres</a></div>
+      </div>
    </div>
    <div id="map"></div>
 </body>
