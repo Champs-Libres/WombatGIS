@@ -119,6 +119,10 @@ var webgis = (function () {
     }
   }
 
+  function layerMenuHeader(css_class, i) {
+    return `<div class="${css_class}" id="title_layer_${i}"><div class="layer_icon"><div id="title_layer_${i}_icon"`;
+  }
+
   function init() {
     /**
      * Create the WegGIS
@@ -211,44 +215,42 @@ var webgis = (function () {
               if (elements[i].menu_title) {
                 if ("icon" in elements[i]) {
                   $("#map_menu").append(
-                    '<div class="' +
-                      css_class +
-                      '" id="title_layer_' +
-                      i +
-                      '"><div class="layer_icon"><img id="title_layer_' +
-                      i +
-                      '_icon" src="img/marker/' +
+                    layerMenuHeader(css_class, i) +
+                      ' src="img/marker/' +
                       elements[i].icon +
                       '" style="margin:auto" /></div><div>' +
                       elements[i].menu_title +
                       "</div></div>"
                   );
                 } else if ("style" in elements[i]) {
-                  if ("fillColor" in elements[i].style) {
-                    $("#map_menu").append(
-                      '<div class="' +
-                        css_class +
-                        '" id="title_layer_' +
-                        i +
-                        '"><div class="layer_icon"><div id="title_layer_' +
-                        i +
-                        '_icon" class="colored_box" style="background-color:' +
-                        elements[i].style.fillColor +
-                        ';"></div></div><div>' +
-                        elements[i].menu_title +
-                        "</div></div>"
-                    );
+                  console.log(elements[i]);
+                  if (elements[i].style) {
+                    if ("fillColor" in elements[i].style) {
+                      // Polygon
+                      $("#map_menu").append(
+                        layerMenuHeader(css_class, i) +
+                          ' class="colored_box" style="background-color:' +
+                          elements[i].style?.fillColor +
+                          ';"></div></div><div>' +
+                          elements[i].menu_title +
+                          "</div></div>"
+                      );
+                    } else {
+                      // Line
+                      $("#map_menu").append(
+                        layerMenuHeader(css_class, i) +
+                          ' class="colored_line" style="background-color:' +
+                          elements[i].style?.color +
+                          ';"></div></div><div>' +
+                          elements[i].menu_title +
+                          "</div></div>"
+                      );
+                    }
                   } else {
+                    // No style
                     $("#map_menu").append(
-                      '<div class="' +
-                        css_class +
-                        '" id="title_layer_' +
-                        i +
-                        '"><div class="layer_icon"><div id="title_layer_' +
-                        i +
-                        '_icon" class="colored_line" style="background-color:' +
-                        elements[i].style.color +
-                        ';"></div></div><div>' +
+                      layerMenuHeader(css_class, i) +
+                        ' class="colored_box" style="background-color:#3388ff;"></div></div><div>' +
                         elements[i].menu_title +
                         "</div></div>"
                     );
