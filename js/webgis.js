@@ -151,7 +151,7 @@ var webgis = (function () {
               config.base_layers[i] === "OpenStreetMap"
             ) {
               layer = new L.tileLayer(
-                "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
                   attribution:
                     'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -162,7 +162,7 @@ var webgis = (function () {
               config.base_layers[i] === "OpenStreetMap - Humanitarian"
             ) {
               layer = new L.tileLayer(
-                "http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+                "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
                 {
                   attribution:
                     'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',

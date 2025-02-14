@@ -3,8 +3,8 @@
    "map_center_lon":"148.053",
    "map_zoom_level":"7",
    "base_layers": [
-      "Open Street Map - Standard",
-      "Open Street Map - Humanitarian"
+      "OpenStreetMap - Standard",
+      "OpenStreetMap - Humanitarian"
    ],
    "elements":[ {
       "menu_title":"My family"
