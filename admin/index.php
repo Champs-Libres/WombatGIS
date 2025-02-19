@@ -34,8 +34,7 @@ display_header("Administration",false);
          <br />(vide : pas dans le menu)</th>
       <th>GeoJson
          <br />(vide : titre dans le menu)</th>
-      <th>Affichage au chargement<br />
-         (0 : affiché, 1 : pas affiché)</th>
+      <th>Affichage au chargement</th>
       <th>Template</th>
       <th></th>
       <th></th>
@@ -46,7 +45,7 @@ for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
    echo "<td>" . $i . "</td>" . PHP_EOL;
    display_td_element_field($json_array, $i, "menu_title", "[vide]");
    display_td_element_field($json_array, $i, "geojson", "[vide]");
-   display_td_element_field($json_array, $i, "at_start_not_displayed", "0 [affiché]");
+   display_td_boolean_field($json_array, $i, "displayed_at_start", "pas affiché");
    display_td_element_field($json_array, $i, "template", "[pas de template]");
    echo "<td><a href=\"element_edit.php?id={$i}\">Modifier</a></td>" . PHP_EOL;
    echo "<td><a href=\"element_delete.php?id={$i}\">Supprimer</a></td>" . PHP_EOL;

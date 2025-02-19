@@ -65,4 +65,22 @@ function display_td_element_field($json_array, $element_id, $field_name, $no_fie
    display_element_field($json_array, $element_id, $field_name, $no_field_message);
    echo "</td>" . PHP_EOL;
 }
+
+function display_boolean_field($json_array, $element_id, $field_name, $no_field_message) {
+   if (array_key_exists($field_name, $json_array["elements"][$element_id])) {
+      return $json_array["elements"][$element_id][$field_name] ? 'affiché' : 'pas affiché';
+   }
+   else {
+      return $no_field_message;
+   }
+}
+
+/**
+ *
+ */
+function display_td_boolean_field($json_array, $element_id, $field_name, $no_field_message) {
+   echo "<td>";
+   echo display_boolean_field($json_array, $element_id, $field_name, $no_field_message);
+   echo "</td>" . PHP_EOL;
+}
 ?>

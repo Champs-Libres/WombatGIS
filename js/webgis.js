@@ -207,12 +207,12 @@ var webgis = (function () {
           for (i = 0, max_i = elements.length; i < max_i; i = i + 1) {
             if (elements[i].geojson) {
               var css_class = "layer_title";
-              if (elements[i].at_start_not_displayed) {
-                elements[i].displayed = false;
-              } else {
+              if (elements[i].displayed_at_start) {
                 elements[i].displayed = true;
                 css_class += " layer_title_selected";
                 addGeojsonLayer(i);
+              } else {
+                elements[i].displayed = false;
               }
               if (elements[i].menu_title) {
                 if ("icon" in elements[i]) {

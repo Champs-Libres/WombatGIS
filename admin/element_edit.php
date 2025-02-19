@@ -54,13 +54,13 @@ if(isset($_POST["form_id"])) {
    } elseif ($_POST["form_id"] == "geojson_delete") {
       $json_array = json_array_delete_element_field($json_array, $element_id, "geojson");
       $message = "GeoJSON supprimé";
-   } elseif ($_POST["form_id"] == "at_start_not_displayed") {
-      if ($_POST["at_start_not_displayed"]) {
-         $json_array = json_array_edit_element_field($json_array, $element_id, "at_start_not_displayed", true);
+   } elseif ($_POST["form_id"] == "displayed_at_start") {
+      if ($_POST["displayed_at_start"]) {
+         $json_array = json_array_edit_element_field($json_array, $element_id, "displayed_at_start", true);
       } else {
-         $json_array = json_array_delete_element_field($json_array, $element_id, "at_start_not_displayed");
+         $json_array = json_array_edit_element_field($json_array, $element_id, "displayed_at_start", false);
       }
-      $message = "Affichage par defaut mis à jour";
+      $message = "Affichage par défaut mis à jour";
    }
    json_array_save($json_array);
    echo "<div class=\"message success\">" . $message . "</div>";
@@ -104,18 +104,18 @@ if(array_key_exists("geojson", $element)) {
    <h3>Afficher le layer au chargement</h3>
 
    Affichage actuel : <?php
-   if(array_key_exists("at_start_not_displayed", $element) && $element["at_start_not_displayed"]) {
-      ?> pas affiché <?php
-   } else {
+   if(array_key_exists("displayed_at_start", $element) && $element["displayed_at_start"]) {
       ?> affiché <?php
+   } else {
+      ?> pas affiché <?php
    }
    ?>
 
    <form method="post">
-   <input type="hidden" name="form_id" value="at_start_not_displayed">
+   <input type="hidden" name="form_id" value="displayed_at_start">
    Mettre à jour :
-   <input type="radio" name="at_start_not_displayed" value="0">Afficher
-   <input type="radio" name="at_start_not_displayed" value="1">Ne pas afficher
+   <input type="radio" name="displayed_at_start" value="1">Afficher
+   <input type="radio" name="displayed_at_start" value="0">Ne pas afficher
    <input type="submit" value="Modifier">
 </form>
 

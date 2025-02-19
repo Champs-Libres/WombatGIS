@@ -11,7 +11,7 @@
 /**
  * Return the data from the file ../data/config.json in an array
  *
- * The order of the layers list ( $data["elements"] ) is very important : it is used for as 
+ * The order of the layers list ( $data["elements"] ) is very important : it is used for as
  * id for the edition.
  */
 function json_array_get() {
@@ -39,7 +39,7 @@ function json_array_save($json_array) {
 }
 
 /**
- * Edit the global data used for the web GIS : 
+ * Edit the global data used for the web GIS :
  * - latitude of the center of the map
  * - longitude of the center of the map
  * - zoom level of the map
@@ -86,7 +86,7 @@ function json_array_edit_element_field($json_array, $element_id, $field_name, $f
  *
  * @param array $json_array The json array
  * @param int $element_id The id of the layer to edit
- * @param string $field_name The name of the field to delete ("template" for the path 
+ * @param string $field_name The name of the field to delete ("template" for the path
  * to the template ("title" and "geojson" are not optional))
  */
 function json_array_delete_element_field($json_array, $element_id, $field_name) {
@@ -107,7 +107,7 @@ function json_array_get_element_field($json_array, $element_id, $field_name, $no
       return $json_array["elements"][$element_id][$field_name];
    }
    else {
-      return  $no_field_response;
+      return $no_field_response;
    }
 }
 
