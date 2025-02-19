@@ -19,3 +19,12 @@ a {
    font-weight: 900;
    color: #88AA00;
 }
+
+div.page_content {
+   max-width: 1400px;
+   margin: 0 auto;
+}
+
+details {
+   font-style: italic;
+}

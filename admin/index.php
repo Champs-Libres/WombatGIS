@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * Index webpage for editing the webgis config file
@@ -30,7 +30,7 @@ display_header("Administration",false);
 <table width="100%">
    <tr>
       <th>#</th>
-      <th>Titre 
+      <th>Titre
          <br />(vide : pas dans le menu)</th>
       <th>GeoJson
          <br />(vide : titre dans le menu)</th>
@@ -43,7 +43,7 @@ display_header("Administration",false);
 <?php
 for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
    echo "<tr>" . PHP_EOL;
-   echo "<td>" . $i . "</td>" . PHP_EOL; 
+   echo "<td>" . $i . "</td>" . PHP_EOL;
    display_td_element_field($json_array, $i, "menu_title", "[vide]");
    display_td_element_field($json_array, $i, "geojson", "[vide]");
    display_td_element_field($json_array, $i, "at_start_not_displayed", "0 [affiché]");

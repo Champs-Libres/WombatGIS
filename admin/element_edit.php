@@ -203,7 +203,7 @@ if(array_key_exists("geojson", $element)) {
    <div>
       <p>Le style : </p>
       <p>{&quot;weight&quot;:3,&quot;color&quot;:&quot;#000&quot;,&quot;fillColor&quot;:&quot;#A6CA1E&quot;,&quot;fillOpacity&quot;:0.1}</p>
-      <p>est appliqué sur ces polygones de communes:</p>
+      <p>est appliqué sur ces polygones de communes ci-dessous. Vous pouvez le copier-coller et l'adapter.</p>
       </div>
       <div>
         <img alt="Exemple de rendu de style" src="img/example-style-1.png" />
@@ -228,7 +228,9 @@ if(array_key_exists("geojson", $element)) {
 </form>
 
 <h2>Édition du template pour le popup</h2>
-<a href="template_example.txt" target="blank">Voir un exemple de template</a>
+<a style="font-style:italic;" href="template_example.txt" target="blank">Voir un exemple de template</a>
+<br>
+<br>
 <?php
 if(array_key_exists("template", $element)) {
    ?>
