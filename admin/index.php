@@ -25,17 +25,16 @@ display_header("Administration",false);
    <a href="general_data_edit.php">Modifier les données générales</a>
 </p>
 
-<h2>Elements et ordre d'affichage</h2>
-<center>
+<h2>Couches et ordre d'affichage</h2>
 <table width="100%">
    <tr>
       <th>#</th>
       <th>Titre
          <br />(vide : pas dans le menu)</th>
-      <th>GeoJson
+      <th>Geojson
          <br />(vide : titre dans le menu)</th>
       <th>Affichage au chargement</th>
-      <th>Template</th>
+      <th>Template popup</th>
       <th></th>
       <th></th>
    </tr>
@@ -53,7 +52,6 @@ for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
 }
 ?>
 </table>
-</center>
 
 <p>
    <?php

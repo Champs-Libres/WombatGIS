@@ -10,7 +10,7 @@ require('data_fct.php');
 require('display_fct.php');
 $json_array = json_array_get();
 $element_id = $_GET["id"];
-display_header("Mise à jour d'un élement");
+display_header("Mise à jour d'une couche");
 
 if(isset($_POST["form_id"])) {
    if($_POST["form_id"] == "menu_title") {
@@ -41,7 +41,7 @@ if(isset($_POST["form_id"])) {
    } elseif($_POST["form_id"] == "icon_upload") {
       $icon_name = updload("icon_file", "../img/marker");
       $json_array = json_array_edit_element_field($json_array, $element_id, "icon", $icon_name);
-      $message = "Icône downloadée et ajoutée";
+      $message = "Icône téléversée et ajoutée";
    } elseif ($_POST["form_id"] == "tempate_delete") {
       $json_array = json_array_delete_element_field($json_array, $element_id, "template");
       $message = "Template supprimé";
@@ -101,7 +101,7 @@ if(array_key_exists("geojson", $element)) {
    </form>
 
 
-   <h3>Afficher le layer au chargement</h3>
+   <h3>Afficher la couche au chargement</h3>
 
    Affichage actuel : <?php
    if(array_key_exists("displayed_at_start", $element) && $element["displayed_at_start"]) {
