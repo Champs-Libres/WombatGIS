@@ -56,7 +56,17 @@ for($i = 0, $size = count($json_array["elements"]); $i < $size; ++$i) {
 </center>
 
 <p>
-   <a href="element_add.php">Ajouter un élément</a>
+   <?php
+   if(isset($_POST["add"])) { //TODO other condition?
+      $json_array = json_array_get();
+      $json_array = json_array_add_element($json_array);
+      json_array_save($json_array);
+      header("Refresh:0");
+   }
+   ?>
+   <form action="" method="post">
+     <button name="add">Ajouter un élément</button>
+   </form>
 </p>
 
 <p>
