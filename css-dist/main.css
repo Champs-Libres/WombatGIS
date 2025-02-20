@@ -1,21 +1,25 @@
 body {
    padding: 0;
    margin: 0;
-   font-family: "Helvetica Neue", "Helvetica", helvetica, arial, sans-serif; color: #747067; font-size: 14px; 
+   font-family: "Helvetica Neue", "Helvetica", helvetica, arial, sans-serif;
+   color: #747067;
+   font-size: 14px;
 }
 
-html, body, #map {
-   width:100%
-   -moz-box-sizing: border-box; 
-   -webkit-box-sizing: border-box;     
-   box-sizing: border-box; 
+html,
+body,
+#map {
+   width: 100%;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
    height: 100%;
 }
 
 #map_menu {
-   position: relative;
+   position: absolute;
    overflow-y: auto;
-   float: left;
+   /* float: left; */
    background-color: #3D3A35;
    color: #E9EAE5;
    height: 100%;
@@ -25,6 +29,38 @@ html, body, #map {
    -moz-box-shadow: 0px 0px 0px 7px rgba(117, 211, 95, 0.5);
    box-shadow: 0px 0px 0px 7px rgba(117, 211, 95, 0.5);
    font-size: 1.1em;
+   opacity: 0.92;
+   -webkit-transition: width 0.6s;
+   transition: width 0.6s;
+}
+
+div#panelContent {
+   opacity: 1;
+   width: 100%;
+   overflow: auto;
+   -webkit-transition: opacity 0.6s;
+   transition: opacity 0.6s;
+}
+
+/* Collapse buttons */
+div#collapseBtn {
+   float: right;
+   margin-top: 3px;
+   margin-right: 3px;
+   font-weight: bold;
+   color: #E9EAE5;
+}
+
+button.collapse_btn {
+   background-color: #fff;
+   font-weight: bold;
+   width: 30px;
+   height: 30px;
+   border-radius: 6px;
+   margin-top: 8px;
+   margin-right: 8px;
+   font-size: 16px;
+   color: #333;
 }
 
 #map_menu .logo_positionner {
@@ -33,8 +69,8 @@ html, body, #map {
 }
 
 #map_menu .logo {
- margin-top: 0;
- margin-bottom: 0;
+   margin-top: 0;
+   margin-bottom: 0;
 }
 
 
@@ -69,16 +105,18 @@ html, body, #map {
    /*font-weight: bold;*/
    font-size: 1.3em;
    /*text-decoration: underline;*/
-   margin-left: 0.5em; /* to overrride .layer_title margin */
-   margin-top: 1em ; /* to override .layer_title margin-top */
+   margin-left: 0.5em;
+   /* to overrride .layer_title margin */
+   margin-top: 1em;
+   /* to override .layer_title margin-top */
 }
 
 
 #map_menu div.layer_title div.layer_icon {
-   width:30px;
+   width: 30px;
    height: 1.1em;
-   float:left;
-   text-align:center
+   float: left;
+   text-align: center
 }
 
 #champs-libres_ref {
@@ -103,7 +141,8 @@ html, body, #map {
 }
 
 
-#img_loader_container, #popup_content_loader {
+#img_loader_container,
+#popup_content_loader {
    position: absolute;
    width: 275px;
 }
@@ -113,19 +152,21 @@ html, body, #map {
    width: 275px;
 }
 
-.colored_line, .colored_box {
+.colored_line,
+.colored_box {
    position: relative;
    margin-left: auto;
    margin-right: auto;
-   width:1em;
+   width: 1em;
    -moz-border-radius: 5px;
    -webkit-border-radius: 5px;
-   border-radius: 5px; /* future proofing */
+   border-radius: 5px;
+   /* future proofing */
    -khtml-border-radius: 5px
 }
 
 .colored_line {
-   height:0.15em;  
+   height: 0.15em;
    margin-top: 0.65em;
    opacity: 0.5;
 }
@@ -174,9 +215,10 @@ div.webgis_pop_up_content {
 }
 
 div.webgis_pop_up_content div.pop_up_top {
-   background-color: rgb(61,58,53);
+   background-color: rgb(61, 58, 53);
    color: #E9EAE5;
-   padding-top: 25px; /* to show the cross to close the pop-up */
+   padding-top: 25px;
+   /* to show the cross to close the pop-up */
 }
 
 div.webgis_pop_up_content p.head {
@@ -193,7 +235,7 @@ div.webgis_pop_up_content img.main {
    width: 400px;
 }
 
-div.webgis_pop_up_sub_content{
+div.webgis_pop_up_sub_content {
    padding-left: 10px;
    padding-right: 10px;
 }
@@ -201,7 +243,7 @@ div.webgis_pop_up_sub_content{
 div.webgis_pop_up_sub_content dt {
    font-weight: bold;
    margin-top: 6px;
-   color: rgb(61,58,53);
+   color: rgb(61, 58, 53);
 }
 
 div.webgis_pop_up_sub_content dd {
