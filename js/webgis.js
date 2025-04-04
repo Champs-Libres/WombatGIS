@@ -156,6 +156,7 @@ var webgis = (function () {
                   layers: '0',
                   format: 'image/png',
                   transparent: true,
+                  opacity: 0.8,
                })
             } else if (config.base_layers[i] === 'Basé sur OpenStreetMap') {
                layer = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
