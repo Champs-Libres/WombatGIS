@@ -148,38 +148,24 @@ var webgis = (function () {
             config.map_zoom_level
           );
 
-          for (i = 0, max_i = config.base_layers.length; i < max_i; i = i + 1) {
+          for (i = 0, max_i = config.base_layers.length;  i < max_i; i = i +1) {
             layer = null;
-            if (
-              config.base_layers[i] === "OpenStreetMap - Standard" ||
-              config.base_layers[i] === "OpenStreetMap"
-            ) {
-              layer = new L.tileLayer(
-                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                {
-                  attribution:
-                    'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            if (config.base_layers[i] === 'SPW photos aériennes') {
+               layer = new L.tileLayer.wms('https://geoservices.wallonie.be/arcgis/services/IMAGERIE/ORTHO_LAST/MapServer/WMSServer?', {
+                  attribution: '&copy; SPW',
+                  layers: '0',
+                  format: 'image/png',
+                  transparent: true,
+               })
+            } else if (config.base_layers[i] === 'Basé sur OpenStreetMap') {
+               layer = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                   maxZoom: 18,
-                }
-              );
-            } else if (
-              config.base_layers[i] === "OpenStreetMap - Humanitarian"
-            ) {
-              layer = new L.tileLayer(
-                "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-                {
-                  attribution:
-                    'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-                  maxZoom: 18,
-                }
-              );
-            } else if (config.base_layers[i] === "Google Satelite") {
-              layer = new L.Google("SATELLITE");
+               });
             }
-
-            if (layer) {
-              map.addLayer(layer);
-              base_layers[config.base_layers[i]] = layer;
+            if(layer) {
+               map.addLayer(layer);
+               base_layers[config.base_layers[i]] = layer;
             }
           }
 
