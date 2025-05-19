@@ -119,8 +119,8 @@ var webgis = (function () {
     }
   }
 
-  function layerMenuHeader(css_class, i) {
-    return `<div class="${css_class}" id="title_layer_${i}"><div class="layer_icon"><div id="title_layer_${i}_icon"`;
+  function layerMenuHeader(css_class, i, div) {
+    return `<div class="${css_class}" id="title_layer_${i}"><div class="layer_icon"><${div} id="title_layer_${i}_icon"`;
   }
 
   function init() {
@@ -148,24 +148,31 @@ var webgis = (function () {
             config.map_zoom_level
           );
 
-          for (i = 0, max_i = config.base_layers.length;  i < max_i; i = i +1) {
+          for (i = 0, max_i = config.base_layers.length; i < max_i; i = i + 1) {
             layer = null;
-            if (config.base_layers[i] === 'SPW photos aériennes') {
-               layer = new L.tileLayer.wms('https://geoservices.wallonie.be/arcgis/services/IMAGERIE/ORTHO_LAST/MapServer/WMSServer?', {
-                  attribution: '&copy; SPW',
-                  layers: '0',
-                  format: 'image/png',
+            if (config.base_layers[i] === "SPW photos aériennes") {
+              layer = new L.tileLayer.wms(
+                "https://geoservices.wallonie.be/arcgis/services/IMAGERIE/ORTHO_LAST/MapServer/WMSServer?",
+                {
+                  attribution: "&copy; SPW",
+                  layers: "0",
+                  format: "image/png",
                   transparent: true,
-               })
-            } else if (config.base_layers[i] === 'Basé sur OpenStreetMap') {
-               layer = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                }
+              );
+            } else if (config.base_layers[i] === "Basé sur OpenStreetMap") {
+              layer = new L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  attribution:
+                    'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
                   maxZoom: 18,
-               });
+                }
+              );
             }
-            if(layer) {
-               map.addLayer(layer);
-               base_layers[config.base_layers[i]] = layer;
+            if (layer) {
+              map.addLayer(layer);
+              base_layers[config.base_layers[i]] = layer;
             }
           }
 
@@ -202,8 +209,9 @@ var webgis = (function () {
               }
               if (elements[i].menu_title) {
                 if ("icon" in elements[i]) {
+                  console.log("icon");
                   $("#panelContent").append(
-                    layerMenuHeader(css_class, i) +
+                    layerMenuHeader(css_class, i, "img") +
                       ' src="img/marker/' +
                       elements[i].icon +
                       '" style="margin:auto" /></div><div>' +
@@ -215,7 +223,7 @@ var webgis = (function () {
                     if ("fillColor" in elements[i].style) {
                       // Polygon
                       $("#panelContent").append(
-                        layerMenuHeader(css_class, i) +
+                        layerMenuHeader(css_class, i, "div") +
                           ' class="colored_box" style="background-color:' +
                           elements[i].style?.fillColor +
                           ';"></div></div><div>' +
@@ -225,7 +233,7 @@ var webgis = (function () {
                     } else {
                       // Line
                       $("#panelContent").append(
-                        layerMenuHeader(css_class, i) +
+                        layerMenuHeader(css_class, i, "div") +
                           ' class="colored_line" style="background-color:' +
                           elements[i].style?.color +
                           ';"></div></div><div>' +
@@ -236,7 +244,7 @@ var webgis = (function () {
                   } else {
                     // No style
                     $("#panelContent").append(
-                      layerMenuHeader(css_class, i) +
+                      layerMenuHeader(css_class, i, "div") +
                         ' class="colored_box" style="background-color:#3388ff;"></div></div><div>' +
                         elements[i].menu_title +
                         "</div></div>"
