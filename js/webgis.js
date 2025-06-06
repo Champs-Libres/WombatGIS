@@ -161,9 +161,20 @@ var webgis = (function () {
                   opacity: 0.8,
                 }
               );
-            } else if (config.base_layers[i] === "Basé sur OpenStreetMap") {
+            }
+            if (config.base_layers[i] === "OpenStreetMap") {
               layer = new L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+                  attribution:
+                    'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                  maxZoom: 18,
+                }
+              );
+            }
+            if (config.base_layers[i] === "OpenStreetMap light") {
+              layer = new L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
                 {
                   attribution:
                     'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
